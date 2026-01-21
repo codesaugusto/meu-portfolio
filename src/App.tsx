@@ -10,7 +10,7 @@ import About from "./components/About/About";
 
 function App() {
   return (
-    <div className="min-h-screen bg-[#040013] via-[#0a001e] to-[#1a1a40]">
+    <div className="min-h-screen bg-[#090520] via-[#0a001e] to-[#343485]">
       <Header />
       <Hero />
       <Button />

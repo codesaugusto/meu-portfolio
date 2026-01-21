@@ -44,7 +44,7 @@ function ProjectCard({
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
       style={{ cursor: "pointer" }}
-      className="grid justify-center rounded-2xl"
+      className="grid rounded-2xl text-left"
     >
       <motion.div
         initial={{ opacity: 0, y: 40 }}
@@ -61,7 +61,15 @@ function ProjectCard({
           />
         </div>
         <div className="px-4 mt-2">
-          <p className="font-semibold font-poppins select-none">
+          <p
+            lang="pt-BR"
+            style={{
+              hyphens: "auto",
+              WebkitHyphens: "auto",
+              msHyphens: "auto",
+            }}
+            className="font-semibold font-poppins select-none text-justify wrap-break-word tracking-[-0.12px] md:tracking-[-0.08px] [word-spacing:-0.06em]"
+          >
             {description}
           </p>
         </div>

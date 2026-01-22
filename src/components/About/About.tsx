@@ -1,140 +1,7 @@
 import { motion } from "framer-motion";
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect } from "react";
 import useInViewAnimation from "../../hooks/useInViewAnimation";
-
-type TypewriterProps = {
-  text: string;
-  speed?: number; // ms por caractere
-  showCursor?: boolean;
-  cursorChar?: string;
-  cursorColor?: string;
-  startOnView?: boolean;
-  className?: string;
-  style?: React.CSSProperties;
-};
-
-const Typewriter: React.FC<TypewriterProps> = ({
-  text,
-  speed = 16,
-  showCursor = true,
-  cursorChar = "|",
-  cursorColor = "#ffffff",
-  startOnView = false,
-  className,
-  style,
-}) => {
-  const [index, setIndex] = useState(0);
-  const [typingComplete, setTypingComplete] = useState(false);
-  const [cursorVisible, setCursorVisible] = useState(true);
-  const [canStart, setCanStart] = useState(!startOnView);
-  const elRef = useRef<HTMLParagraphElement | null>(null);
-
-  // começa a digitar quando canStart se torna true
-  useEffect(() => {
-    if (!canStart) return;
-
-    // Adia a redefinição do estado para evitar setState síncrono dentro do efeito (evita renderizações em cascata)
-    const initId = window.setTimeout(() => {
-      setIndex(0);
-      setTypingComplete(false);
-      setCursorVisible(true);
-    }, 0);
-
-    const id = window.setInterval(() => {
-      setIndex((i) => {
-        if (i >= text.length) {
-          clearInterval(id);
-          setTypingComplete(true);
-          return i;
-        }
-        return i + 1;
-      });
-    }, speed);
-
-    return () => {
-      clearTimeout(initId);
-      clearInterval(id);
-    };
-  }, [text, speed, canStart]);
-
-  // observa o elemento para começar a digitar quando ele entrar na viewport
-  useEffect(() => {
-    if (!startOnView) return;
-    const el = elRef.current;
-    if (!el) return;
-
-    let leaveTimeout: number | null = null;
-    // increase debounce and add rootMargin to avoid flicker when only a
-    // sliver of the paragraph is visible during scrolling
-    const obs = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          // consider visible when any pixel intersects
-          if (entry.intersectionRatio > 0) {
-            if (leaveTimeout) {
-              clearTimeout(leaveTimeout);
-              leaveTimeout = null;
-            }
-            // Quando o elemento entra na viewport, reinicia o state
-            setIndex(0);
-            setTypingComplete(false);
-            setCursorVisible(true);
-            setCanStart(true);
-          } else {
-            // Debounce the leave to avoid flicker when only a sliver is visible
-            if (leaveTimeout) clearTimeout(leaveTimeout);
-            leaveTimeout = window.setTimeout(() => {
-              setCanStart(false);
-              leaveTimeout = null;
-            }, 300);
-          }
-        });
-      },
-      { threshold: [0], rootMargin: "0px 0px -10px 0px" },
-    );
-    obs.observe(el);
-    return () => {
-      obs.disconnect();
-      if (leaveTimeout) clearTimeout(leaveTimeout);
-    };
-  }, [startOnView]);
-
-  // Blink cursor via JS
-  useEffect(() => {
-    if (!showCursor) return;
-    if (!typingComplete) {
-      const timeoutId = window.setTimeout(() => setCursorVisible(true), 0);
-      return () => clearTimeout(timeoutId);
-    }
-    const blinkId = setInterval(() => setCursorVisible((v) => !v), 500);
-    return () => clearInterval(blinkId);
-  }, [typingComplete, showCursor]);
-
-  return (
-    <p
-      ref={elRef}
-      lang="pt-BR"
-      style={{
-        hyphens: "auto",
-        WebkitHyphens: "auto",
-        msHyphens: "auto",
-        ...style,
-      }}
-      className={className}
-    >
-      {text.slice(0, index)}
-      {showCursor && (
-        <span
-          aria-hidden
-          className="ml-1 inline-block"
-          style={{ color: cursorColor, opacity: cursorVisible ? 1 : 0 }}
-        >
-          {cursorChar}
-        </span>
-      )}
-    </p>
-  );
-};
+import Typewriter from "../../utils/Typewritter";
 
 const About = () => {
   const { ref, controls } = useInViewAnimation({
@@ -156,7 +23,7 @@ const About = () => {
             ref={ref as React.RefObject<HTMLDivElement>}
             initial={{ opacity: 0, y: 40 }}
             animate={controls}
-            className="rounded-2xl border-white/10 w-92 h-128"
+            className="rounded-2xl border-white/10 md:w-92 md:h-128 justify-center w-[18rem] h-[27rem]"
           >
             <img
               src="/imgs/img_perfil.png"
@@ -165,7 +32,7 @@ const About = () => {
             />
           </motion.div>
         </div>
-        <div className="w-[25rem] md:w-[22rem]">
+        <div className="w-[20rem] h-[27rem] md:w-[22rem]">
           <Typewriter
             text={
               "Me chamo Carlos Augusto, atuo como desenvolvedor Full Stack, com foco em JavaScript/TypeScript e construção de aplicações web modernas. Ao longo da minha formação, atuei tanto no backend (autenticação, CRUD, estruturação de banco de dados) quanto no frontend, criando interfaces funcionais e bem estruturadas."

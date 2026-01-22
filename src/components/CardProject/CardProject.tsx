@@ -107,7 +107,6 @@ function ProjectCard({
   return (
     <motion.div
       ref={ref}
-      // whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
       style={{ cursor: "pointer" }}
       className="grid rounded-2xl text-left"
@@ -115,9 +114,9 @@ function ProjectCard({
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         animate={controls}
-        className="flex flex-col items-center bg-gradient-to-r from-[#189c70] via-[#219b72] to-[#1f855c] gap-4 rounded-2xl w-[25rem] h-[29rem] p-4"
+        className="flex flex-col items-center bg-gradient-to-r from-[#189c70] via-[#219b72] to-[#1f855c] gap-4 rounded-2xl w-[18rem] h-[27rem] md:w-[25rem] md:h-[29rem] p-4"
       >
-        <div className="mx-auto mt-4 flex rounded-2xl w-[21rem] h-[14rem] select-none overflow-hidden">
+        <div className="mx-auto mt-4 flex rounded-2xl w-[16rem] h-[15rem]  md:w-[21rem] md:h-[14rem] select-none overflow-hidden">
           {imgSrc ? (
             <motion.img
               src={imgSrc}
@@ -163,7 +162,7 @@ export function CardProject() {
         Meus Projetos
       </h1>
       {/* Cards */}
-      <div className="grid grid-cols-3 justify-center gap-22">
+      <div className="grid md:grid-cols-3 grid-cols-1 justify-center gap-22">
         <ProjectCard
           imgSrc="../../../imgs/img_bot_discord_deals.jpg"
           description={
@@ -197,7 +196,7 @@ export function CardProject() {
         <ProjectCard
           imgSrc="../../../imgs/scraping_gpu.png"
           description={
-            "Web Scraping - Raspagem de dados de GPU de um site e-commerce, feito com uso das bibliotecas Selenium, OS, pandas, re, math"
+            "Web Scraping - Raspagem de dados de preços de placas de video de um site e-commerce, feito com uso das bibliotecas Selenium, OS, pandas, re, math"
           }
           icon={
             <Icons

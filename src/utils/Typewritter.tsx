@@ -21,6 +21,7 @@ const Typewriter: React.FC<TypewriterProps> = ({
   const animRef = useRef<{
     intervalId: number | null;
     initTimeoutId: number | null;
+    rafId: number | null;
     generation: number;
     running: boolean;
     leaveTimeoutId: number | null;
@@ -29,6 +30,7 @@ const Typewriter: React.FC<TypewriterProps> = ({
   }>({
     intervalId: null,
     initTimeoutId: null,
+    rafId: null,
     generation: 0,
     running: false,
     leaveTimeoutId: null,
@@ -60,6 +62,10 @@ const Typewriter: React.FC<TypewriterProps> = ({
     if (animRef.current.intervalId) {
       clearInterval(animRef.current.intervalId);
       animRef.current.intervalId = null;
+    }
+    if (animRef.current.rafId) {
+      cancelAnimationFrame(animRef.current.rafId);
+      animRef.current.rafId = null;
     }
     if (animRef.current.postCompleteTimeoutId) {
       clearTimeout(animRef.current.postCompleteTimeoutId);
@@ -94,46 +100,64 @@ const Typewriter: React.FC<TypewriterProps> = ({
         setTypingComplete(false);
         setCursorVisible(true);
 
-        animRef.current.intervalId = window.setInterval(() => {
-          setIndex((i) => {
-            // If generation changed, stop this interval.
-            if (gen !== animRef.current.generation) {
-              // clear this interval to avoid it running forever without advancing state
-              clearAnim(false);
-              return i;
-            }
-            if (i >= cleanText.length) {
-              // complete: clear interval and mark complete
-              if (animRef.current.intervalId) {
-                clearInterval(animRef.current.intervalId);
-                animRef.current.intervalId = null;
+        // Use requestAnimationFrame with time accumulation so rapid speeds
+        // don't spawn many interval ticks and to play nicer with the browser's
+        // rendering loop. Also clamp a minimum sensible speed to avoid
+        // extremely frequent updates that can cause jank on low-end devices.
+        const effectiveSpeed = Math.max(speed, 25);
+        let last = performance.now();
+        let acc = 0;
+
+        const tick = (now: number) => {
+          // stop if a newer generation started
+          if (gen !== animRef.current.generation) {
+            clearAnim(false);
+            return;
+          }
+          const delta = now - last;
+          last = now;
+          acc += delta;
+          if (acc >= effectiveSpeed) {
+            acc = 0;
+            setIndex((i) => {
+              if (gen !== animRef.current.generation) {
+                // generation invalidated while in updater
+                clearAnim(false);
+                return i;
               }
-              animRef.current.running = false;
-              setTypingComplete(true);
-              // If a leave was requested earlier (user left), clear immediately.
-              if (animRef.current.leaveRequested) {
-                // immediate clear since user already left
-                clearAnim(true);
-                setCanStart(false);
-              } else {
-                // start grace timer to clear/reset after a few seconds
-                if (animRef.current.postCompleteTimeoutId) {
-                  clearTimeout(animRef.current.postCompleteTimeoutId);
+              if (i >= cleanText.length) {
+                // complete: stop the raf loop and mark complete
+                if (animRef.current.rafId) {
+                  cancelAnimationFrame(animRef.current.rafId);
+                  animRef.current.rafId = null;
                 }
-                animRef.current.postCompleteTimeoutId = window.setTimeout(
-                  () => {
-                    animRef.current.postCompleteTimeoutId = null;
-                    clearAnim(true);
-                    setCanStart(false);
-                  },
-                  POST_COMPLETE_GRACE,
-                );
+                animRef.current.running = false;
+                setTypingComplete(true);
+                if (animRef.current.leaveRequested) {
+                  clearAnim(true);
+                  setCanStart(false);
+                } else {
+                  if (animRef.current.postCompleteTimeoutId) {
+                    clearTimeout(animRef.current.postCompleteTimeoutId);
+                  }
+                  animRef.current.postCompleteTimeoutId = window.setTimeout(
+                    () => {
+                      animRef.current.postCompleteTimeoutId = null;
+                      clearAnim(true);
+                      setCanStart(false);
+                    },
+                    POST_COMPLETE_GRACE,
+                  );
+                }
+                return i;
               }
-              return i;
-            }
-            return i + 1;
-          });
-        }, speed);
+              return i + 1;
+            });
+          }
+          animRef.current.rafId = window.requestAnimationFrame(tick);
+        };
+
+        animRef.current.rafId = window.requestAnimationFrame(tick);
         animRef.current.running = true;
         animRef.current.initTimeoutId = null;
       }, 0);

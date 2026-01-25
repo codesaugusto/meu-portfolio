@@ -5,13 +5,13 @@ import { useState } from "react";
 
 const Contact = () => {
   return (
-    <div className="flex flex-col gap-1 mt-[18rem]">
+    <div className="flex flex-col gap-4 px-3 md:px-0 md:gap-12 md:mt-[14rem]">
       <h1 className="text-[#f2f2f2] text-4xl flex justify-center items-center font-semibold font-poppins">
         Contato
       </h1>
-      <div className=" grid gap-14 mt-4">
-        <div className="flex justify-end mx-65 rounded-xl mt-5 h-[38rem] py-9 pr-9 bg-linear-to-r from-[#189c70] via-[#219b72] to-[#1f855c] mb-11">
-          <div className="grid grid-cols-1 pl-12 text-start items-center mx-auto">
+      <div className=" grid">
+        <div className="flex flex-col md:flex-row items-center md:justify-end md:mx-65 rounded-xl md:h-auto md:h-[38rem] py-9 pr-0 md:pr-9 bg-transparent md:bg-linear-to-r md:from-[#189c70] md:via-[#219b72] md:to-[#1f855c] mb-11">
+          <div className="hidden md:grid grid-cols-1 pl-12 text-start items-center mx-auto">
             <div className="pb-14 flex justify-between h-full">
               <div className="items-start flex flex-col gap-10">
                 <h1 className="font-poppins font-bold text-3xl w-[35rem]">
@@ -106,12 +106,11 @@ const Contact = () => {
               </div>
             </div>
           </div>
-          <div className="h-full w-1/2 rounded-2xl bg-[#0e0930] via-[#0a001e] to-[#343485] flex items-center justify-center">
-            <div className="w-[28rem] p-6 shadow-lg">
+          <div className="h-full w-[92%] md:w-1/2 rounded-2xl bg-[#140c49] via-[#0a001e] to-[#343485] flex items-center justify-center mx-auto">
+            <div className="p-6 px-8 md:px-16 w-full">
               <h2 className="text-[#f2f2f2] font-bold text-2xl mb-4">
                 Entre em contato <span className="text-[#189c70]">comigo</span>
               </h2>
-
               {/* Form */}
               <ContactForm />
             </div>

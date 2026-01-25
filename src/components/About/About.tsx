@@ -112,7 +112,7 @@ const About = () => {
   }, [controls]);
 
   return (
-    <div className="justify-center grid gap-14 mt-[15rem]">
+    <div className="justify-center grid gap-12 mt-[9rem]">
       <h1 className="text-white text-4xl flex justify-center items-center font-semibold font-poppins mt-12 ">
         Sobre mim
       </h1>
@@ -136,14 +136,22 @@ const About = () => {
             />
           </motion.div>
         </div>
-        <div className="w-[20rem] h-[27rem] md:w-[22rem]" ref={typeRef}>
+        <div
+          className="w-[20rem] px-5 md:px-0 h-[27rem] md:w-[22rem]"
+          ref={typeRef}
+        >
           <Typewriter
             text={
-              "Me chamo Carlos Augusto, atuo como desenvolvedor Full Stack, com foco em JavaScript/TypeScript e construção de aplicações web modernas. Ao longo da minha formação, atuei tanto no backend (autenticação, CRUD, estruturação de banco de dados) quanto no frontend, criando interfaces funcionais e bem estruturadas."
+              "Olá, Seja bem vindo(a)! Meu nome é Carlos Augusto, atuo como desenvolvedor Full Stack, com foco em React/TypeScript e construção de aplicações web modernas. Ao longo da minha formação, atuei tanto no backend (autenticação, CRUD, estruturação de banco de dados) quanto no frontend, criando interfaces funcionais e bem estruturadas."
             }
             speed={14}
             startOnView={showType}
-            className="text-[1.13rem] text-justify leading-relaxed font-semibold font-poppins text-white max-w-[23rem] tracking-[-0.25px] md:tracking-[-0.15px] lg:tracking-[-0.08px] [word-spacing:-0.14rem] md:[word-spacing:-0.12rem] lg:[word-spacing:-0.12rem]"
+            style={{
+              hyphens: "auto",
+              WebkitHyphens: "auto",
+              msHyphens: "auto",
+            }}
+            className="text-[1.13rem] md:text-justify text-justify leading-relaxed font-semibold font-poppins text-white max-w-[23rem] tracking-[-0.25px] md:tracking-[-0.15px] lg:tracking-[-0.08px] [word-spacing:-0.10rem] md:[word-spacing:-0.04rem] lg:[word-spacing:-0.02rem]"
           />
         </div>
       </div>

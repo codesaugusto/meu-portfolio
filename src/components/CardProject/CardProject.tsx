@@ -238,8 +238,8 @@ function ProjectCard({
 
 export function CardProject() {
   return (
-    <div className="justify-center grid gap-12 mt-12">
-      <h1 className="text-white text-4xl flex justify-center items-center font-semibold font-poppins mt-12">
+    <div className="justify-center grid gap-12">
+      <h1 className="text-white text-4xl flex justify-center items-center font-semibold font-poppins mt-[4rem]">
         Meus Projetos
       </h1>
       {/* Cards */}

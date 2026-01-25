@@ -161,7 +161,7 @@ const TechCarousel = () => {
   };
 
   return (
-    <section className="relative w-full overflow-hidden py-16 mt-[12rem] mb-[4rem]">
+    <section className="relative w-full overflow-hidden py-16 mt-[17rem] mb-[4rem]">
       {/* Fade esquerda */}
       <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-32 bg-linear-to-r to-transparent" />
 

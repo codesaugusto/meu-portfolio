@@ -1,9 +1,14 @@
 import { SiGithub, SiWhatsapp, SiLinkedin, SiInstagram } from "react-icons/si";
 import { HiOutlinePaperAirplane } from "react-icons/hi";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { useState } from "react";
 
 const Contact = () => {
+  const reduceMotion = useReducedMotion();
+  const tapTransition = reduceMotion
+    ? { duration: 0.06 }
+    : { type: "spring", stiffness: 300, damping: 30 };
+
   return (
     <div className="flex flex-col gap-4 px-3 md:px-0 md:gap-12 md:mt-[14rem]">
       <h1 className="text-[#f2f2f2] text-4xl flex justify-center items-center font-semibold font-poppins">
@@ -21,15 +26,12 @@ const Contact = () => {
                 </h1>
                 <motion.button
                   type="button"
-                  whileTap={{
-                    scale: 0.98,
-                    transition: {
-                      type: "spring",
-                      stiffness: 1500,
-                      damping: 30,
-                    },
+                  whileTap={{ scale: 0.98, transition: tapTransition }}
+                  style={{
+                    cursor: "pointer",
+                    willChange: "transform",
+                    backfaceVisibility: "hidden",
                   }}
-                  style={{ cursor: "pointer" }}
                   className="gap-9 flex flex-col items-start border-2 w-[19rem] px-5 py-2 rounded-lg hover:bg-[#1d8864] transform-gpu transition-colors duration-200 focus:outline-none"
                   aria-label="whatsapp"
                 >
@@ -42,15 +44,12 @@ const Contact = () => {
                 </motion.button>
                 <motion.button
                   type="button"
-                  whileTap={{
-                    scale: 0.98,
-                    transition: {
-                      type: "spring",
-                      stiffness: 1500,
-                      damping: 30,
-                    },
+                  whileTap={{ scale: 0.98, transition: tapTransition }}
+                  style={{
+                    cursor: "pointer",
+                    willChange: "transform",
+                    backfaceVisibility: "hidden",
                   }}
-                  style={{ cursor: "pointer" }}
                   className="gap-9 flex flex-col items-start border-2 w-[19rem] px-5 py-2 rounded-lg hover:bg-[#1d8864] transform-gpu transition-colors duration-200 focus:outline-none"
                   aria-label="instagram"
                 >
@@ -63,15 +62,12 @@ const Contact = () => {
                 </motion.button>
                 <motion.button
                   type="button"
-                  whileTap={{
-                    scale: 0.98,
-                    transition: {
-                      type: "spring",
-                      stiffness: 1500,
-                      damping: 30,
-                    },
+                  whileTap={{ scale: 0.98, transition: tapTransition }}
+                  style={{
+                    cursor: "pointer",
+                    willChange: "transform",
+                    backfaceVisibility: "hidden",
                   }}
-                  style={{ cursor: "pointer" }}
                   className="gap-9 flex flex-col items-start border-2 w-[19rem] px-5 py-2 rounded-lg hover:bg-[#1d8864] transform-gpu transition-colors duration-200 focus:outline-none"
                   aria-label="linkedin"
                 >
@@ -84,15 +80,12 @@ const Contact = () => {
                 </motion.button>
                 <motion.button
                   type="button"
-                  whileTap={{
-                    scale: 0.98,
-                    transition: {
-                      type: "spring",
-                      stiffness: 1500,
-                      damping: 30,
-                    },
+                  whileTap={{ scale: 0.98, transition: tapTransition }}
+                  style={{
+                    cursor: "pointer",
+                    willChange: "transform",
+                    backfaceVisibility: "hidden",
                   }}
-                  style={{ cursor: "pointer" }}
                   className="gap-9 flex flex-col items-start border-2 w-[19rem] px-5 py-2 rounded-lg hover:bg-[#1d8864] transform-gpu transition-colors duration-200 focus:outline-none"
                   aria-label="github"
                 >

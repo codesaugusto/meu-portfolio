@@ -1,13 +1,19 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { Zap, PhoneCall } from "lucide-react";
 
 const Button = () => {
+  const reduceMotion = useReducedMotion();
+  const tapTransition = reduceMotion
+    ? { duration: 0.06 }
+    : { type: "spring", stiffness: 300, damping: 28 };
+
   return (
-    <div className="flex justify-center mt-18 md:mt-[4rem]">
+    <div className="flex justify-center mt-18 md:mt-[2rem]">
       <div className="grid md:grid-cols-2 grid-cols-1 md:gap-1 gap-3">
         <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
+          whileHover={{ scale: 1.05, transition: tapTransition }}
+          whileTap={{ scale: 0.95, transition: tapTransition }}
+          style={{ willChange: "transform", backfaceVisibility: "hidden" }}
           className="px-8 py-4 bg-[#F2F2F2] text-black rounded-3xl w-fit font-black uppercase tracking-tighter text-xl flex gap-2 items-center"
         >
           <PhoneCall className=" text-black w-8 h-8" />
@@ -15,8 +21,9 @@ const Button = () => {
         </motion.button>
 
         <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
+          whileHover={{ scale: 1.05, transition: tapTransition }}
+          whileTap={{ scale: 0.95, transition: tapTransition }}
+          style={{ willChange: "transform", backfaceVisibility: "hidden" }}
           className="
           flex items-center
           px-10 mx-auto py-4 

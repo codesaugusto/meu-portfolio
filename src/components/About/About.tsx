@@ -122,6 +122,7 @@ const About = () => {
             ref={ref as React.RefObject<HTMLDivElement>}
             initial={{ opacity: 0, y: 40 }}
             animate={controls}
+            style={{ willChange: "transform", backfaceVisibility: "hidden" }}
             className="rounded-2xl border-white/10 md:w-92 md:h-128 justify-center w-[18rem] h-[27rem]"
           >
             <img

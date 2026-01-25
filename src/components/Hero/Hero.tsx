@@ -10,11 +10,12 @@ const Hero = () => {
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, ease: "easeOut" }}
+        style={{ willChange: "transform", backfaceVisibility: "hidden" }}
         className="flex flex-col gap-2 items-center md:pl-10 px-6"
       >
         <h1
           style={{ hyphens: "auto", WebkitHyphens: "auto", msHyphens: "auto" }}
-          className="md:text-6xl text-4xl italic font-playfair leading-tight pt-16 text-center md:text-center"
+          className="md:text-6xl text-4xl italic font-playfair leading-tight pt-16 text-center md:text-center font-[640]"
         >
           <span className="block text-[#F2F2F2]">
             Transformo <span className="text-[#10b981]">ideias </span>

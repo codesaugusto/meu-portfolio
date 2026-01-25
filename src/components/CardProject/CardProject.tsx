@@ -1,4 +1,4 @@
-import { motion, useAnimation } from "framer-motion";
+import { motion, useAnimation, useReducedMotion } from "framer-motion";
 import { useEffect, useRef } from "react";
 import {
   SiPython,
@@ -40,6 +40,7 @@ function ProjectCard({
   const ref = useRef<HTMLDivElement | null>(null);
   const controls = useAnimation();
   const imgControls = useAnimation();
+  const reduceMotion = useReducedMotion();
 
   useEffect(() => {
     const el = ref.current;
@@ -67,16 +68,19 @@ function ProjectCard({
               y: 0,
               transition: { duration: 0.8, ease: "easeInOut" },
             });
-            // start subtle bobbing animation on the image
-            // gentler bobbing to reduce rendering cost on low-end devices
-            imgControls.start({
-              y: [0, -6, 0],
-              transition: {
-                duration: 3.6,
-                repeat: Infinity,
-                ease: "easeInOut",
-              },
-            });
+            // start subtle bobbing animation on the image unless reduced motion
+            if (!reduceMotion) {
+              imgControls.start({
+                y: [0, -6, 0],
+                transition: {
+                  duration: 3.6,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                },
+              });
+            } else {
+              imgControls.set({ y: 0, scale: 1.16 });
+            }
             // ensure we resume if page becomes visible again
             // visibleRef marks whether we are considered visible
             visibleRef.current = true;
@@ -92,11 +96,15 @@ function ProjectCard({
                 y: 40,
                 transition: { duration: 0.35, ease: "easeInOut" },
               });
-              imgControls.start({
-                y: 0,
-                scale: 1.16,
-                transition: { duration: 0.2 },
-              });
+              if (!reduceMotion) {
+                imgControls.start({
+                  y: 0,
+                  scale: 1.16,
+                  transition: { duration: 0.2 },
+                });
+              } else {
+                imgControls.set({ y: 0, scale: 1.16 });
+              }
             }, 3000);
           }
         });
@@ -131,14 +139,18 @@ function ProjectCard({
               y: 0,
               transition: { duration: 0.8, ease: "easeInOut" },
             });
-            imgControls.start({
-              y: [0, -6, 0],
-              transition: {
-                duration: 3.6,
-                repeat: Infinity,
-                ease: "easeInOut",
-              },
-            });
+            if (!reduceMotion) {
+              imgControls.start({
+                y: [0, -6, 0],
+                transition: {
+                  duration: 3.6,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                },
+              });
+            } else {
+              imgControls.set({ y: 0, scale: 1.16 });
+            }
           }
         } catch (e) {
           console.error(e);
@@ -157,14 +169,18 @@ function ProjectCard({
             y: 0,
             transition: { duration: 0.8, ease: "easeInOut" },
           });
-          imgControls.start({
-            y: [0, -6, 0],
-            transition: {
-              duration: 3.6,
-              repeat: Infinity,
-              ease: "easeInOut",
-            },
-          });
+          if (!reduceMotion) {
+            imgControls.start({
+              y: [0, -6, 0],
+              transition: {
+                duration: 3.6,
+                repeat: Infinity,
+                ease: "easeInOut",
+              },
+            });
+          } else {
+            imgControls.set({ y: 0, scale: 1.16 });
+          }
         }
       } catch (e) {
         console.error(e);
@@ -187,12 +203,17 @@ function ProjectCard({
     <motion.div
       ref={ref}
       whileTap={{ scale: 0.95 }}
-      style={{ cursor: "pointer" }}
+      style={{
+        cursor: "pointer",
+        willChange: "transform",
+        backfaceVisibility: "hidden",
+      }}
       className="grid rounded-2xl text-left"
     >
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         animate={controls}
+        style={{ willChange: "transform", backfaceVisibility: "hidden" }}
         className="flex flex-col items-center bg-gradient-to-r from-[#189c70] via-[#219b72] to-[#1f855c] gap-4 rounded-2xl w-[18rem] h-[27rem] md:w-[25rem] shadow-lg shadow-[#08051a] md:h-[29rem] p-4"
       >
         <div className="mx-auto mt-4 flex rounded-2xl w-[16rem] h-[15rem]  md:w-[21rem] md:h-[14rem] select-none overflow-hidden">
@@ -208,7 +229,11 @@ function ProjectCard({
               initial={{ y: 0, scale: 1.16 }}
               whileHover={{ scale: 1.28 }}
               animate={imgControls}
-              style={{ transformOrigin: "center", willChange: "transform" }}
+              style={{
+                transformOrigin: "center",
+                willChange: "transform",
+                backfaceVisibility: "hidden",
+              }}
             />
           ) : (
             <div className="w-full h-full rounded-2xl bg-white/5 flex items-center justify-center text-xs text-white/60">

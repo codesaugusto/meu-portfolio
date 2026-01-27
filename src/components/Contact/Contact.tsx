@@ -40,7 +40,7 @@ const Contact = () => {
                   <div className="flex gap-3 items-center justify-center">
                     <SiWhatsapp className="size-5 text-white" />
                     <p className="text-[#f2f2f2] font-semibold font-poppins text-lg">
-                      (67) 9113-8636
+                      (67) 99655-7683
                     </p>
                   </div>
                 </motion.button>

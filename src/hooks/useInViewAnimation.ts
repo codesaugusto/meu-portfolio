@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { useAnimation, type Transition } from "framer-motion";
 import useInViewContext from "../context/useInViewContext";
 
@@ -23,7 +23,7 @@ export default function useInViewAnimation(options: Options = {}): {
   const wasInViewRef = useRef(false);
   const { observe, unobserve } = useInViewContext();
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const el = ref.current;
     if (!el) return;
 
@@ -71,17 +71,8 @@ export default function useInViewAnimation(options: Options = {}): {
             (window.innerHeight || document.documentElement.clientHeight) &&
           r.bottom > 0
         ) {
-          // emulate an entry visible with minimal required fields
-          const fakeEntry = {
-            intersectionRatio: 1,
-            target: el,
-            isIntersecting: true,
-            boundingClientRect: r,
-            intersectionRect: r,
-            rootBounds: null,
-            time: Date.now(),
-          } as unknown as IntersectionObserverEntry;
-          cb(fakeEntry);
+          // emulate an entry visible
+          cb({} as IntersectionObserverEntry);
         }
       } catch {
         /* ignore */

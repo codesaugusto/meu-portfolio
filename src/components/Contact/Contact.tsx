@@ -1,18 +1,39 @@
 import { SiGithub, SiWhatsapp, SiLinkedin, SiInstagram } from "react-icons/si";
 import { HiOutlinePaperAirplane } from "react-icons/hi";
 import { motion, useReducedMotion } from "framer-motion";
+import type { Transition } from "framer-motion";
 import { useState } from "react";
 import { useThemeContext } from "../../context/useThemeContext";
 
 const Contact = () => {
   const { theme } = useThemeContext();
+  const shouldReduceMotion = useReducedMotion();
+  const tapTransition: Transition = shouldReduceMotion
+    ? { duration: 0 }
+    : { type: "spring", stiffness: 300, damping: 20 };
+  // helper to open external links safely in a new tab
+  const openExternal = (url: string) => {
+    try {
+      const a = document.createElement("a");
+      a.href = url;
+      a.target = "_blank";
+      a.rel = "noopener noreferrer";
+      // append to body to ensure click works in some browsers
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    } catch (e) {
+      // fallback
+      window.open(url, "_blank");
+    }
+  };
   return (
-    <div className="flex flex-col gap-1 mt-[18rem]">
+    <div className="flex flex-col gap-8 mt-[18rem]">
       <h1 className="text-current text-4xl flex justify-center items-center font-semibold font-poppins">
         Contato
       </h1>
       <div className=" grid">
-        <div className="flex flex-col md:flex-row items-center md:justify-end md:mx-65 rounded-xl md:h-auto md:h-[38rem] py-9 pr-0 md:pr-9 bg-transparent md:bg-linear-to-r md:from-[#189c70] md:via-[#219b72] md:to-[#1f855c] mb-11">
+        <div className="flex flex-col md:flex-row items-center md:justify-end md:mx-65 rounded-xl md:h-auto  py-9 pr-0 md:pr-9 bg-transparent md:bg-linear-to-r md:from-[#189c70] md:via-[#219b72] md:to-[#1f855c] mb-11">
           <div className="hidden md:grid grid-cols-1 pl-12 text-start items-center mx-auto">
             <div className="pb-14 flex justify-between h-full">
               <div className="items-start flex flex-col gap-10">
@@ -27,32 +48,38 @@ const Contact = () => {
                 </h1>
                 <motion.button
                   type="button"
+                  onClick={() =>
+                    openExternal(
+                      "https://api.whatsapp.com/send?phone=5567991138636",
+                    )
+                  }
                   whileTap={{ scale: 0.98, transition: tapTransition }}
                   style={{
                     cursor: "pointer",
                     willChange: "transform",
                     backfaceVisibility: "hidden",
                   }}
-                  style={{ cursor: "pointer" }}
                   className="gap-9 flex flex-col items-start border-2 border-white w-[19rem] px-5 py-2 rounded-lg hover:bg-[#1d8864] transform-gpu transition-colors duration-200 focus:outline-none"
                   aria-label="whatsapp"
                 >
                   <div className="flex gap-3 items-center justify-center">
                     <SiWhatsapp className="size-5 text-white" />
                     <p className="text-[#f2f2f2] font-semibold font-poppins text-lg">
-                      (67) 99655-7683
+                      (67) 9113-8636
                     </p>
                   </div>
                 </motion.button>
                 <motion.button
                   type="button"
+                  onClick={() =>
+                    openExternal("https://instagram.com/codes.augusto")
+                  }
                   whileTap={{ scale: 0.98, transition: tapTransition }}
                   style={{
                     cursor: "pointer",
                     willChange: "transform",
                     backfaceVisibility: "hidden",
                   }}
-                  style={{ cursor: "pointer" }}
                   className="gap-9 flex flex-col items-start border-2 border-white w-[19rem] px-5 py-2 rounded-lg hover:bg-[#1d8864] transform-gpu transition-colors duration-200 focus:outline-none"
                   aria-label="instagram"
                 >
@@ -65,13 +92,15 @@ const Contact = () => {
                 </motion.button>
                 <motion.button
                   type="button"
+                  onClick={() =>
+                    openExternal("https://www.linkedin.com/in/codesaugusto")
+                  }
                   whileTap={{ scale: 0.98, transition: tapTransition }}
                   style={{
                     cursor: "pointer",
                     willChange: "transform",
                     backfaceVisibility: "hidden",
                   }}
-                  style={{ cursor: "pointer" }}
                   className="gap-9 flex flex-col items-start border-2 border-white w-[19rem] px-5 py-2 rounded-lg hover:bg-[#1d8864] transform-gpu transition-colors duration-200 focus:outline-none"
                   aria-label="linkedin"
                 >
@@ -84,13 +113,15 @@ const Contact = () => {
                 </motion.button>
                 <motion.button
                   type="button"
+                  onClick={() =>
+                    openExternal("https://github.com/codesaugusto")
+                  }
                   whileTap={{ scale: 0.98, transition: tapTransition }}
                   style={{
                     cursor: "pointer",
                     willChange: "transform",
                     backfaceVisibility: "hidden",
                   }}
-                  style={{ cursor: "pointer" }}
                   className="gap-9 flex flex-col items-start border-2 border-white w-[19rem] px-5 py-2 rounded-lg hover:bg-[#1d8864] transform-gpu transition-colors duration-200 focus:outline-none"
                   aria-label="github"
                 >
@@ -199,6 +230,7 @@ function ContactForm() {
             <button
               key={i}
               type="button"
+              style={{ cursor: "pointer" }}
               onClick={() => toggleInterest(i)}
               className={`px-3 py-2 rounded-md text-sm border ${active ? "bg-[#219b72] text-white border-[#219b72] font-poppins" : "bg-white text-gray-700 font-poppins border-gray-300"}`}
             >
@@ -258,10 +290,9 @@ function ContactForm() {
                 resetForAnother();
               }
             }}
-            style={{ cursor: "pointer" }}
             disabled={loading}
             aria-disabled={loading}
-            className="flex items-center gap-3 bg-gradient-to-r from-[#219b72] to-[#1f855c] text-white px-5 py-3 rounded-xl shadow-lg hover:shadow-xl transform transition-all duration-150 active:scale-95 disabled:opacity-60 disabled:cursor-not-allowed"
+            className="flex items-center gap-3 bg-gradient-to-r from-[#219b72] to-[#1f855c] text-white px-5 py-3 rounded-xl shadow-lg hover:shadow-xl transform transition-all duration-150 active:scale-95 disabled:opacity-60 disabled:cursor-not-allowed font-poppins"
           >
             <HiOutlinePaperAirplane />
             <span>

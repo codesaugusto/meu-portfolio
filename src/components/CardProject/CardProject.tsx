@@ -1,5 +1,5 @@
-import { motion, useAnimation } from "framer-motion";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
+import { motion, useAnimation, useReducedMotion } from "framer-motion";
 import useInViewAnimation from "../../hooks/useInViewAnimation";
 import {
   SiPython,

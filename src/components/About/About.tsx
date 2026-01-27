@@ -1,114 +1,8 @@
-import { motion } from "framer-motion";
-import React, { useEffect, useRef, useState } from "react";
-import useInViewAnimation from "../../hooks/useInViewAnimation";
-import useInViewContext from "../../context/useInViewContext";
 import Typewriter from "../../utils/Typewritter";
+import { useInViewFade } from "../../hooks/useInViewFade";
 
 const About = () => {
-  const { ref, controls } = useInViewAnimation({
-    once: false,
-    duration: 0.8,
-    ease: "easeOut",
-    leaveGrace: 3000,
-  });
-
-  // Control Typewriter start from this component so we can guarantee the
-  // same 3s leave grace and avoid conflicting observers.
-  const typeRef = useRef<HTMLDivElement | null>(null);
-  const [showType, setShowType] = useState(false);
-  const { observe, unobserve } = useInViewContext();
-
-  useEffect(() => {
-    const el = typeRef.current;
-    if (!el) return;
-    let leaveTimeout: number | null = null;
-
-    const cb = (entry: IntersectionObserverEntry) => {
-      if (entry.intersectionRatio > 0) {
-        if (leaveTimeout) {
-          clearTimeout(leaveTimeout);
-          leaveTimeout = null;
-        }
-        setShowType(true);
-      } else {
-        if (leaveTimeout) clearTimeout(leaveTimeout);
-        leaveTimeout = window.setTimeout(() => {
-          leaveTimeout = null;
-          setShowType(false);
-        }, 3000);
-      }
-    };
-
-    observe(el, cb);
-    return () => {
-      unobserve(el, cb);
-      if (leaveTimeout) clearTimeout(leaveTimeout);
-    };
-  }, [observe, unobserve]);
-
-  useEffect(() => {}, [controls]);
-
-  // Pause/resume framer animations when the page visibility changes to avoid
-  // stale RAF/timers when the tab was frozen; resume only if the element is
-  // currently in view.
-  useEffect(() => {
-    const el = typeRef.current;
-
-    const resumeIfInView = (forceReset = false) => {
-      if (!el) return;
-      const r = el.getBoundingClientRect();
-      const inView = r.top < window.innerHeight && r.bottom > 0;
-      if (!inView) return;
-
-      // Ensure we reset to the hidden state then animate in so we don't
-      // end up with stale transforms/opacity after a page freeze.
-      try {
-        if (forceReset) {
-          // set immediate values synchronously, then animate
-          controls.set({ opacity: 0, y: 40 });
-        }
-        // start the visible animation asynchronously to avoid sync setState
-        window.setTimeout(() => {
-          setShowType(true);
-          controls.start({
-            opacity: 1,
-            y: 0,
-            transition: { duration: 0.8, ease: "easeOut" },
-          });
-        }, 0);
-      } catch (err) {
-        console.error("About resume error", err);
-      }
-    };
-
-    const onVisibility = () => {
-      if (document.visibilityState === "hidden") {
-        try {
-          controls.stop();
-        } catch (e) {
-          console.error(e);
-        }
-        // request that the typewriter stop; it will restart on visible
-        setShowType(false);
-      } else {
-        // On becoming visible, force a quick reset then resume if in view.
-        resumeIfInView(true);
-      }
-    };
-
-    const onPageShow = () => {
-      // Always attempt to resume animations on pageshow; if the element
-      // is in view, reset and start to avoid stale RAF/state.
-      resumeIfInView(true);
-    };
-
-    document.addEventListener("visibilitychange", onVisibility);
-    window.addEventListener("pageshow", onPageShow as EventListener);
-    return () => {
-      document.removeEventListener("visibilitychange", onVisibility);
-      window.removeEventListener("pageshow", onPageShow as EventListener);
-    };
-  }, [controls]);
+  const { ref, visible } = useInViewFade<HTMLDivElement>();
 
   return (
     <div className="justify-center grid gap-14 mt-[15rem]">
@@ -116,11 +10,14 @@ const About = () => {
         Sobre mim
       </h1>
       <div className="flex flex-col md:flex-row items-center md:justify-between gap-12 md:gap-12">
-        <div>
-          <motion.div
-            ref={ref as React.RefObject<HTMLDivElement>}
-            initial={{ opacity: 0, y: 40 }}
-            animate={controls}
+        <div
+          ref={ref}
+          className={`
+            transition-all duration-700 ease-out
+            ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}
+          `}
+        >
+          <div
             style={{ willChange: "transform", backfaceVisibility: "hidden" }}
             className="rounded-2xl border-white/10 md:w-92 md:h-128 justify-center w-[18rem] h-[27rem]"
           >
@@ -134,19 +31,16 @@ const About = () => {
               alt="Model"
               style={{ willChange: "transform", backfaceVisibility: "hidden" }}
             />
-          </motion.div>
+          </div>
         </div>
-        <div
-          className="w-[20rem] px-5 md:px-0 h-[27rem] md:w-[22rem]"
-          ref={typeRef}
-        >
+        <div className="w-[20rem] px-5 md:px-0 h-[27rem] md:w-[22rem]">
           <Typewriter
+            startOnView
             text={
-              "Olá, Seja bem vindo(a)! Meu nome é Carlos Augusto, atuo como desenvolvedor Full Stack, com foco em React/TypeScript e construção de aplicações web modernas. Ao longo da minha formação, atuei tanto no backend (autenticação, CRUD, estruturação de banco de dados) quanto no frontend, criando interfaces funcionais e bem estruturadas."
+              "Olá, Seja bem vindo(a)! Meu nome é Carlos Augusto, atuo como desenvolvedor Full Stack, com foco em React/TypeScript e construção de aplicações web modernas. Ao longo da minha formação, atuei tanto no backend (autenticação, CRUD, estrutura de banco de dados) quanto no frontend, criando interfaces funcionais e bem estruturadas."
             }
             speed={14}
-            startOnView={showType}
-            className="text-[1.13rem] text-justify leading-relaxed font-semibold font-poppins text-current max-w-[23rem] tracking-[-0.25px] md:tracking-[-0.15px] lg:tracking-[-0.08px] [word-spacing:-0.14rem] md:[word-spacing:-0.12rem] lg:[word-spacing:-0.12rem]"
+            className="text-[1.13rem] text-justify leading-relaxed font-semibold font-poppins text-current max-w-[23rem] tracking-[-0.25px] md:tracking-[-0.15px] lg:tracking-[-0.08px] [word-spacing:-0.14rem] md:[word-spacing:-0.12rem] lg:[word-spacing:-0.09rem]"
           />
         </div>
       </div>

@@ -1,15 +1,7 @@
 import React, { useEffect, useRef } from "react";
-import { useAnimation, type Transition } from "framer-motion";
+import { useAnimation } from "framer-motion";
 import useInViewContext from "../context/useInViewContext";
-
-type Options = {
-  threshold?: number;
-  rootMargin?: string;
-  once?: boolean; // if true, animation runs only once
-  duration?: number;
-  ease?: Transition["ease"];
-  leaveGrace?: number; // ms to wait after leaving before hiding
-};
+import type { Options } from "../types/typeOptions";
 
 export default function useInViewAnimation(options: Options = {}): {
   ref: React.RefObject<HTMLElement | null>;
@@ -94,6 +86,65 @@ export default function useInViewAnimation(options: Options = {}): {
     observe,
     unobserve,
   ]);
+
+  // Ensure animations resume correctly when the page becomes visible again.
+  // Some browsers may pause IntersectionObserver updates while a tab is hidden;
+  // listen to visibility/pageshow and force a reset+start if the element is in view.
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const resumeIfInView = (forceReset = false) => {
+      const r = el.getBoundingClientRect();
+      const inView =
+        r.top < (window.innerHeight || document.documentElement.clientHeight) &&
+        r.bottom > 0;
+      if (!inView) return;
+      try {
+        if (forceReset) {
+          controls.set({ opacity: 0, y: 40 });
+        }
+        window.setTimeout(() => {
+          // clear any pending leave state so the animation can run
+          wasInViewRef.current = false;
+          controls.start({
+            opacity: 1,
+            y: 0,
+            transition: {
+              duration: options.duration ?? 0.8,
+              ease: options.ease ?? "easeOut",
+            },
+          });
+        }, 0);
+      } catch (err) {
+        console.error("useInViewAnimation resume error", err);
+      }
+    };
+
+    const onVisibility = () => {
+      if (document.visibilityState === "hidden") {
+        try {
+          controls.stop();
+        } catch (e) {
+          console.error(e);
+
+          /* ignore */
+        }
+      } else {
+        resumeIfInView(true);
+      }
+    };
+
+    const onPageShow = () => resumeIfInView(true);
+
+    document.addEventListener("visibilitychange", onVisibility);
+    window.addEventListener("pageshow", onPageShow as EventListener);
+
+    return () => {
+      document.removeEventListener("visibilitychange", onVisibility);
+      window.removeEventListener("pageshow", onPageShow as EventListener);
+    };
+  }, [controls, options.duration, options.ease]);
 
   return { ref, controls, inView };
 }

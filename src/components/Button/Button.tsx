@@ -9,8 +9,8 @@ const Button = () => {
     theme === "dark" ? "bg-white text-black" : "bg-black text-white";
 
   return (
-    <div className="flex justify-center mt-18 md:mt-[2rem]">
-      <div className="grid md:grid-cols-2 grid-cols-1 md:gap-1 gap-3">
+    <div className="flex justify-center mt-38 md:mt-[2rem]">
+      <div className="flex md:grid-cols-2 grid-cols-1 md:gap-5 gap-3">
         <motion.button
           style={{ cursor: "pointer" }}
           whileHover={{ scale: 1.05 }}
@@ -21,10 +21,10 @@ const Button = () => {
               el.scrollIntoView({ behavior: "smooth", block: "start" });
             }
           }}
-          className={`px-8 py-4 rounded-3xl w-fit font-black uppercase tracking-tighter text-xl flex gap-2 items-center ${contactThemeClasses}`}
+          className={`md:px-8 px-4 py-4 md:rounded-3xl rounded-xl md:w-fit w-[4rem] font-black uppercase tracking-tighter md:text-xl text-lg flex justify-center gap-2 items-center ${contactThemeClasses}`}
         >
           <PhoneCall className="w-8 h-8 text-current" />
-          CONTATO
+          <h1 className="hidden md:flex">CONTATO</h1>
         </motion.button>
 
         <motion.button
@@ -37,10 +37,10 @@ const Button = () => {
               el.scrollIntoView({ behavior: "smooth", block: "start" });
             }
           }}
-          className="flex items-center px-10 mx-auto py-4 bg-emerald-500 dark:bg-emerald-400 text-black dark:text-white text-xl uppercase tracking-tighter rounded-3xl font-black gap-1"
+          className="flex justify-center items-center md:px-10 w-[4rem] md:w-fit px-4 rounded-xl mx-auto py-4 bg-emerald-500 dark:bg-emerald-400 text-black dark:text-white md:text-xl text-lg uppercase tracking-tighter md:rounded-3xl font-black gap-1"
         >
           <Zap className="w-8 h-8 text-current" />
-          Projetos
+          <h1 className="hidden md:flex">PROJETOS</h1>
         </motion.button>
       </div>
     </div>

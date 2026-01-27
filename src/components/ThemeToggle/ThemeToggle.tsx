@@ -9,7 +9,7 @@ export default function ThemeToggle() {
       aria-label="Alternar tema"
       onClick={toggleTheme}
       style={{ cursor: "pointer" }}
-      className={`p-2 fixed z-50 rounded-md shadow active:scale-95 transition-transform flex items-center justify-center top-6 right-6 md:top-12 md:right-21 ${theme === "dark" ? "bg-white" : "bg-black"}`}
+      className={`p-3 md:p-2 fixed z-50 rounded-lg shadow active:scale-95 transition-transform flex items-center justify-center top-6 right-6 md:top-12 md:right-21 ${theme === "dark" ? "bg-white" : "bg-black"}`}
       title={theme === "dark" ? "Mudar para claro" : "Mudar para escuro"}
     >
       {theme === "dark" ? (

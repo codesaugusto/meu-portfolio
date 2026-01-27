@@ -29,12 +29,12 @@ const Contact = () => {
     }
   };
   return (
-    <div id="contact" className="flex pt-5 flex-col gap-6 mt-[15rem]">
+    <div id="contact" className="flex pt-5 flex-col lg:gap-6 lg:mt-[15rem]">
       <h1 className="text-current text-4xl flex justify-center items-center font-semibold font-poppins">
         Contato
       </h1>
       <div className=" grid">
-        <div className="flex flex-col md:flex-row items-center md:justify-end md:mx-65 rounded-xl md:h-auto  py-9 pr-0 md:pr-9 bg-transparent md:bg-linear-to-r md:from-[#189c70] md:via-[#219b72] md:to-[#1f855c] mb-11">
+        <div className="flex flex-col mx-auto justify-center md:flex-row items-center md:justify-end md:mx-65 rounded-xl md:h-auto pt-12 md:pt-8 md:py-6 md:pr-9 bg-transparent md:bg-linear-to-r md:from-[#189c70] md:via-[#219b72] md:to-[#1f855c] mb-11">
           <div className="hidden md:grid grid-cols-1 pl-12 text-start items-center mx-auto">
             <div className="pb-14 flex justify-between h-full">
               <div className="items-start flex flex-col gap-10">
@@ -60,7 +60,7 @@ const Contact = () => {
                     willChange: "transform",
                     backfaceVisibility: "hidden",
                   }}
-                  className="gap-9 flex flex-col items-start border-2 border-white w-[19rem] px-5 py-2 rounded-lg hover:bg-[#1d8864] transform-gpu transition-colors duration-200 focus:outline-none"
+                  className="gap-9 flex flex-col items-start border-2 border-white w-[16rem] px-5 py-2 rounded-2xl hover:bg-[#1d8864] transform-gpu transition-colors duration-200 focus:outline-none"
                   aria-label="whatsapp"
                 >
                   <div className="flex gap-3 items-center justify-center">
@@ -81,7 +81,7 @@ const Contact = () => {
                     willChange: "transform",
                     backfaceVisibility: "hidden",
                   }}
-                  className="gap-9 flex flex-col items-start border-2 border-white w-[19rem] px-5 py-2 rounded-lg hover:bg-[#1d8864] transform-gpu transition-colors duration-200 focus:outline-none"
+                  className="gap-9 flex flex-col items-start border-2 border-white w-[16rem] px-5 py-2 rounded-2xl hover:bg-[#1d8864] transform-gpu transition-colors duration-200 focus:outline-none"
                   aria-label="instagram"
                 >
                   <div className="flex gap-3 items-center justify-center">
@@ -102,7 +102,7 @@ const Contact = () => {
                     willChange: "transform",
                     backfaceVisibility: "hidden",
                   }}
-                  className="gap-9 flex flex-col items-start border-2 border-white w-[19rem] px-5 py-2 rounded-lg hover:bg-[#1d8864] transform-gpu transition-colors duration-200 focus:outline-none"
+                  className="gap-9 flex flex-col items-start border-2 border-white w-[16rem] px-5 py-2 rounded-2xl hover:bg-[#1d8864] transform-gpu transition-colors duration-200 focus:outline-none"
                   aria-label="linkedin"
                 >
                   <div className="flex gap-3 items-center justify-center">
@@ -123,7 +123,7 @@ const Contact = () => {
                     willChange: "transform",
                     backfaceVisibility: "hidden",
                   }}
-                  className="gap-9 flex flex-col items-start border-2 border-white w-[19rem] px-5 py-2 rounded-lg hover:bg-[#1d8864] transform-gpu transition-colors duration-200 focus:outline-none"
+                  className="gap-9 flex flex-col items-start border-2 border-white w-[16rem] px-5 py-2 rounded-2xl hover:bg-[#1d8864] transform-gpu transition-colors duration-200 focus:outline-none"
                   aria-label="github"
                 >
                   <div className="flex gap-3 items-center justify-center">
@@ -137,13 +137,13 @@ const Contact = () => {
             </div>
           </div>
           <div
-            className={`h-full w-1/2 rounded-2xl ${
+            className={`h-full lg:w-1/2 w-[21rem] rounded-2xl md:py-6 ${
               theme === "dark"
                 ? "bg-[#0e0930] via-[#0a001e] to-[#343485]"
                 : "bg-[#f2f2f2]"
             } flex items-center justify-center`}
           >
-            <div className="w-[28rem] p-6">
+            <div className="w-[28rem] flex flex-col justify-center px-7 md:px-5">
               <h2
                 className={` ${theme === "dark" ? "text-[#f2f2f2]" : "text-black"} font-bold text-2xl mb-4`}
               >
@@ -281,7 +281,7 @@ function ContactForm() {
         className="hidden"
       />
 
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col gap-3 items-center md:justify-between justify-center">
         <div>
           <button
             type="submit"
@@ -306,7 +306,7 @@ function ContactForm() {
           </button>
         </div>
 
-        <div className="text-sm">
+        <div className="text-md">
           {status === "ok" && (
             <span className="text-green-600">Mensagem enviada!</span>
           )}

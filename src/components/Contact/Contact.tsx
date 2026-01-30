@@ -8,7 +8,7 @@ const Contact = () => {
   return (
     <div
       id="contact"
-      className="flex pt-5 md:pt-[10rem] flex-col md:gap-14 md:mt-0 mt-8"
+      className="flex pt-5 md:pt-[9rem] flex-col md:gap-14 md:mt-0 mt-8"
     >
       <h1 className="text-current text-4xl flex justify-center items-center font-semibold font-poppins">
         Contato

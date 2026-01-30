@@ -41,24 +41,32 @@ export default function Footer() {
         <div className="flex items-center gap-4 mt-8 text-[#209168]">
           <a
             href="https://api.whatsapp.com/send?phone=5567991138636"
+            target="_blank"
+            rel="noreferrer"
             className="hover:-translate-y-0.5 transition-all duration-300"
           >
             <SiWhatsapp className="size-6" />
           </a>
           <a
             href="https://instagram.com/codes.augusto"
+            target="_blank"
+            rel="noreferrer"
             className="hover:-translate-y-0.5 transition-all duration-300"
           >
             <SiInstagram className="size-6" />
           </a>
           <a
             href="https://www.linkedin.com/in/codesaugusto"
+            target="_blank"
+            rel="noreferrer"
             className="hover:-translate-y-0.5 transition-all duration-300"
           >
             <SiLinkedin className="size-6" />
           </a>
           <a
             href="https://github.com/codesaugusto"
+            target="_blank"
+            rel="noreferrer"
             className="hover:-translate-y-0.5 transition-all duration-300"
           >
             <SiGithub className="size-6" />
@@ -66,7 +74,9 @@ export default function Footer() {
         </div>
         <p className="mt-8 text-center italic dark:text-white">
           Copyright © {new Date().getFullYear()}{" "}
-          <a href="https://prebuiltui.com">codes.augusto feito com ❤️</a>
+          <a href="https://prebuiltui.com" target="_blank" rel="noreferrer">
+            codes.augusto feito com ❤️
+          </a>
         </p>
       </footer>
     </>

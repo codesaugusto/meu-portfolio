@@ -12,6 +12,15 @@ function sanitize(str = "") {
     .slice(0, 2000);
 }
 
+function escapeHtml(str = "") {
+  return String(str)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
 export default async function (req, res) {
   // Allow CORS for dev; in production set ALLOWED_ORIGIN
   const allowedOrigin = process.env.ALLOWED_ORIGIN || "*";
@@ -25,6 +34,11 @@ export default async function (req, res) {
 
   if (req.method !== "POST") {
     return res.status(405).json({ ok: false, error: "Method not allowed" });
+  }
+
+  const contentType = req.headers["content-type"] || "";
+  if (!contentType.includes("application/json")) {
+    return res.status(415).json({ ok: false, error: "Invalid content type" });
   }
 
   if (
@@ -71,9 +85,14 @@ export default async function (req, res) {
   const cleanName = sanitize(name);
   const cleanEmail = sanitize(email);
   const cleanMessage = sanitize(message);
-  const cleanInterest = Array.isArray(interest)
-    ? interest.join(", ")
-    : String(interest || "");
+  const cleanInterest = sanitize(
+    Array.isArray(interest) ? interest.join(", ") : String(interest || ""),
+  );
+
+  const escName = escapeHtml(cleanName);
+  const escEmail = escapeHtml(cleanEmail);
+  const escMessage = escapeHtml(cleanMessage);
+  const escInterest = escapeHtml(cleanInterest);
 
   // basic email check
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(cleanEmail)) {
@@ -86,7 +105,7 @@ export default async function (req, res) {
       from: process.env.SENDGRID_FROM,
       subject: `Novo contato: ${cleanName}`,
       text: `Interesses: ${cleanInterest}\n\nMensagem:\n${cleanMessage}\n\nEmail: ${cleanEmail}`,
-      html: `<p><strong>Interesses:</strong> ${cleanInterest}</p><p><strong>Mensagem:</strong><br/>${cleanMessage}</p><p><strong>Email:</strong> ${cleanEmail}</p>`,
+      html: `<p><strong>Interesses:</strong> ${escInterest}</p><p><strong>Mensagem:</strong><br/>${escMessage}</p><p><strong>Email:</strong> ${escEmail}</p>`,
     };
 
     await send(msg);

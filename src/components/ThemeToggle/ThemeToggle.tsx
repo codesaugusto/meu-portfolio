@@ -11,7 +11,7 @@ export default function ThemeToggle() {
   const isDark = theme === "dark";
 
   return (
-    <div className="fixed z-50 select-none top-6 right-8 md:top-12 md:right-22">
+    <div className="fixed z-50 select-none top-6 right-3 md:top-12 md:right-22">
       <div className="flex items-center space-x-2.5">
         <SwitchWrapper checked={isDark} onCheckedChange={toggleTheme}>
           <Switch

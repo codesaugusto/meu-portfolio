@@ -12,7 +12,7 @@ export default function Footer() {
             `}</style>
 
       <footer className="flex flex-col bg-[#f2f2f2]dark:bg-[#0E0930] items-center justify-around w-full py-6 text-sm text-gray-800/70">
-        <div className="flex items-center gap-8">
+        <div className="flex items-center md:gap-8 gap-5">
           <a
             href="#home"
             className="font-medium dark:text-white text-gray-500 hover:text-black transition-all"

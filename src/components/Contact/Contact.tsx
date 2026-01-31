@@ -128,9 +128,9 @@ function ContactForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="border-2 space-y-3 py-5 px-5 md:py-0 md:px-0 md:border-0 rounded-2xl bg-[#1fe4a2] md:bg-transparent"
+      className="border-2 space-y-3 py-5 px-5 md:py-0 md:px-0 md:border-0 rounded-2xl w-[21rem] bg-[#f2f2f2] md:bg-transparent"
     >
-      <label className="font-poppins text-sm text-current">
+      <label className="font-poppins text-sm text-black md:text-current">
         Estou interessado em...
       </label>
       <div className="flex flex-wrap gap-3 pt-2">

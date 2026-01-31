@@ -7,7 +7,7 @@ const About = () => {
   return (
     <div
       id="about"
-      className="relative overflow-hidden xl:pb-60 xl:pt-35 mt-[10rem] bg-cover bg-center bg-no-repeat bg-blend-multiply filter"
+      className="relative overflow-hidden xl:pb-60 xl:pt-35 pt-22 mt-[10rem] bg-cover bg-center bg-no-repeat bg-blend-multiply filter"
       style={{
         backgroundImage: `linear-gradient(90deg, rgba(0,188,125,0.95), rgba(31,133,92,0.95)), url('/imgs/texture.png')`,
       }}

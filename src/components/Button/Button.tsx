@@ -21,7 +21,7 @@ const Button = () => {
               el.scrollIntoView({ behavior: "smooth", block: "start" });
             }
           }}
-          className={`md:px-8 px-4 py-4 md:rounded-3xl rounded-xl md:w-[13rem] w-[7rem] h-12 md:h-full font-bold uppercase tracking-tighter md:text-lg text-lg flex justify-center gap-2 items-center ${contactThemeClasses}`}
+          className={`md:px-8 px-4 py-4 md:rounded-3xl rounded-xl md:w-[13rem] w-[7rem] h-12 md:h-full font-bold font-poppins uppercase tracking-tighter md:text-lg text-lg flex justify-center gap-2 items-center ${contactThemeClasses}`}
         >
           <PhoneCall className="w-8 h-8 text-current" />
           <h1 className="hidden md:flex">CONTATO</h1>
@@ -37,7 +37,7 @@ const Button = () => {
               el.scrollIntoView({ behavior: "smooth", block: "start" });
             }
           }}
-          className="flex justify-center items-center md:px-10 w-[7rem] md:w-[13rem] h-12 md:h-full px-4 rounded-xl mx-auto py-4 bg-emerald-500 dark:bg-emerald-400 text-black md:text-lg text-lg uppercase tracking-tighter md:rounded-3xl font-bold gap-1"
+          className="flex justify-center items-center md:px-10 w-[7rem] md:w-[13rem] font-poppins h-12 md:h-full px-4 rounded-xl mx-auto py-4 bg-emerald-500 dark:bg-emerald-400 text-black md:text-lg text-lg uppercase tracking-tighter md:rounded-3xl font-bold gap-1"
         >
           <Zap className="w-8 h-8 text-current" />
           <h1 className="hidden md:flex">PROJETOS</h1>

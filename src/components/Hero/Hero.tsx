@@ -19,7 +19,7 @@ const Hero = () => {
               WebkitHyphens: "auto",
               msHyphens: "auto",
             }}
-            className="md:text-6xl text-3xl italic font-playfair leading-tight md:pt-16 pt-22 text-center md:text-center font-[510]"
+            className="md:text-6xl text-3xl font-poppins leading-tight md:pt-16 pt-22 text-center md:text-center font-[450]"
           >
             <span className="block dark:text-appTextDark">
               Transformo <span className="text-emerald-500">ideias </span>

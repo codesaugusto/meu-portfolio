@@ -21,9 +21,9 @@ function App() {
         <Button />
         <Text />
         <TechCarousel />
-        <CardProject />
-        <About />
         <Services />
+        <About />
+        <CardProject />
         <Contact />
         <Footer />
       </ThemeProvider>

@@ -31,12 +31,12 @@ function ServiceCard({ icon, title, description }: ServiceCardProps) {
     >
       <motion.div className="flex flex-col items-center bg-[#00BC7D] gap-4 rounded-2xl w-[18rem] h-[27rem] md:w-[25rem] shadow-lg shadow-black/60 md:h-[29rem] p-4">
         <div className="mx-auto mt-4 flex rounded-2xl w-[16rem] h-[15rem]  md:w-[21rem] md:h-[14rem] select-none overflow-hidden">
-          <div className="w-full h-full rounded-2xl bg-white/7 flex items-center justify-center text-6xl text-white">
+          <div className="w-full h-full rounded-2xl bg-white/7 flex items-center justify-center text-6xl text-current">
             {icon}
           </div>
         </div>
         <div className="px-4 mt-2">
-          <h3 className="text-xl font-bold font-poppins text-white text-center mb-2">
+          <h3 className="text-xl font-bold font-poppins text-current text-center mb-2">
             {title}
           </h3>
           <p

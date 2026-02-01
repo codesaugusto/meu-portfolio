@@ -43,7 +43,7 @@ const About = () => {
               />
             </div>
           </div>
-          <div className="w-[20rem] px-5 md:px-0 h-[27rem] md:w-[22rem]">
+          <div className="w-[20rem] px-5 md:px-0 text-white h-[27rem] md:w-[22rem]">
             <Typewriter
               startOnView
               text={

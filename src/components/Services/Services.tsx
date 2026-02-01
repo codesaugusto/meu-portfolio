@@ -61,13 +61,13 @@ const Services = () => {
     <div
       id="services"
       onClick={() => handleSmoothScroll({ id: "services" })}
-      className="justify-center grid gap-12 xl:pt-34 xl:pb-30"
+      className="justify-center grid gap-12 pt-22 xl:pt-34 xl:pb-30"
     >
       <h1 className="text-4xl text-current flex justify-center items-center font-semibold font-poppins">
         Meus Serviços
       </h1>
       {/* cards */}
-      <div className="grid md:grid-cols-2 xl:grid-cols-3 grid-cols-1 gap-22">
+      <div className="grid md:grid-cols-2 xl:grid-cols-3 grid-cols-1 justify-center gap-22 xl:px-0 md:gap-16 md:px-12 md:pr-16 xl:pr-0 xl:gap-22">
         <ServiceCard
           icon={
             <PiCoffeeFill
@@ -86,15 +86,17 @@ const Services = () => {
           title="Aplicações Web"
           description="Criação de aplicações web modernas utilizando as melhores práticas e tecnologias atuais, feitas sob medida para suas necessidades."
         />
-        <ServiceCard
-          icon={
-            <MdRocketLaunch
-              className={` ${theme === "dark" ? "text-[#f2f2f2]" : "text-black"} size-18`}
-            />
-          } // Placeholder icon
-          title="Performance & Deploy"
-          description="Otimização de performance e deploy de aplicações para produção, preocupação de quem entende a importância de um site rápido e eficiente."
-        />
+        <div className="md:col-span-2 md:flex md:justify-center xl:col-span-1">
+          <ServiceCard
+            icon={
+              <MdRocketLaunch
+                className={` ${theme === "dark" ? "text-[#f2f2f2]" : "text-black"} size-18`}
+              />
+            } // Placeholder icon
+            title="Performance & Deploy"
+            description="Otimização de performance e deploy de aplicações para produção, preocupação de quem entende a importância de um site rápido e eficiente."
+          />
+        </div>
       </div>
     </div>
   );

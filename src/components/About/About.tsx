@@ -7,13 +7,13 @@ const About = () => {
   return (
     <div
       id="about"
-      className="relative overflow-hidden xl:pb-60 xl:pt-35 pt-22 mt-[10rem] bg-cover bg-center bg-no-repeat bg-blend-multiply filter"
+      className="relative overflow-hidden xl:pb-60 xl:pt-35 pt-22 mt-[8rem] md:mt-[8rem] bg-cover bg-center bg-no-repeat bg-blend-multiply filter"
       style={{
         backgroundImage: `linear-gradient(90deg, rgba(0,188,125,0.95), rgba(31,133,92,0.95)), url('/imgs/texture.png')`,
       }}
     >
       <div className="justify-center grid gap-14">
-        <h1 className="text-current text-4xl flex justify-center items-center font-semibold font-poppins">
+        <h1 className="text-[#f2f2f2] text-4xl flex justify-center items-center font-semibold font-poppins">
           Sobre mim
         </h1>
         <div className="flex flex-col xl:flex-row items-center md:justify-between gap-12 md:gap-12">
@@ -49,8 +49,9 @@ const About = () => {
               text={
                 "Olá, Seja bem vindo(a)! Meu nome é Carlos Augusto, atuo como desenvolvedor Full Stack, com foco em React/TypeScript e construção de aplicações web modernas. Ao longo da minha formação, atuei tanto no backend (autenticação, CRUD, estrutura de banco de dados) quanto no frontend, criando interfaces funcionais e bem estruturadas."
               }
+              cursorColor="text-[#f2f2f2]"
               speed={14}
-              className="text-[1.13rem] text-justify leading-relaxed font-semibold font-poppins text-current max-w-[23rem] tracking-[-0.25px] md:tracking-[-0.15px] lg:tracking-[-0.08px] [word-spacing:-0.14rem] md:[word-spacing:-0.12rem] lg:[word-spacing:-0.09rem]"
+              className="text-[1.15rem] text-justify leading-relaxed font-semibold font-poppins text-current max-w-[23rem] tracking-[-0.25px] md:tracking-[-0.15px] lg:tracking-[-0.08px] [word-spacing:-0.14rem] md:[word-spacing:-0.12rem] lg:[word-spacing:-0.09rem]"
             />
           </div>
         </div>

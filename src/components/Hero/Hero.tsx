@@ -16,8 +16,8 @@ const Hero = () => {
           <h1
             style={{
               hyphens: "none",
-              WebkitHyphens: "auto",
-              msHyphens: "auto",
+              WebkitHyphens: "none",
+              msHyphens: "none",
             }}
             className="md:text-6xl text-3xl font-poppins leading-tight md:pt-16 pt-22 text-center md:text-center font-[450]"
           >

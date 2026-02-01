@@ -11,13 +11,13 @@ const Contact = () => {
     <div
       id="contact"
       onClick={() => handleSmoothScroll({ id: "contact" })}
-      className="flex pt-5 md:pt-[9rem] flex-col md:gap-14 md:mt-0 mt-8"
+      className="flex pt-5 md:pt-[9rem] xl:pt-[9rem] flex-col md:gap-2 xl:gap-14 md:mt-0 mt-8"
     >
       <h1 className="text-current text-4xl flex justify-center items-center font-semibold font-poppins">
         Contato
       </h1>
       <div className=" grid">
-        <div className="flex flex-col mx-auto justify-center md:flex-row items-center md:justify-end md:mx-65 xl:mx-auto rounded-xl md:h-auto pt-12 md:pt-8 md:py-6 md:pr-9 xl:px-2 xl:pr-9 xl:py-9 bg-transparent xl:bg-linear-to-r xl:from-[#00BC7D] xl:via-[#219b72] xl:to-[#1f855c] mb-11">
+        <div className="flex flex-col mx-auto justify-center md:flex-row items-center md:justify-end md:mx-65 xl:mx-auto rounded-xl md:h-auto pt-12 md:pt-0 xl:pt-8 md:py-6 md:pr-9 xl:px-2 xl:pr-9 xl:py-9 bg-transparent xl:bg-linear-to-r xl:from-[#00BC7D] xl:via-[#219b72] xl:to-[#1f855c] mb-11">
           <div className="hidden xl:grid grid-cols-1 pl-12 xl:mx-0 text-start items-center mx-auto">
             <div className="pb-14 flex justify-between h-full">
               <div className="items-start flex flex-col gap-10">
@@ -47,7 +47,7 @@ const Contact = () => {
                 : "bg-[#f2f2f2]"
             } flex items-center justify-center`}
           >
-            <div className="w-[28rem] flex flex-col justify-center px-5 md:px-5 pt-2">
+            <div className="w-[28rem] flex flex-col justify-center px-5 md:px-5 pt-2 md:items-center xl:items-start">
               <div className="flex items-center justify-center md:items-start md:justify-start">
                 <h2
                   className={` ${theme === "dark" ? "text-[#f2f2f2]" : "text-black"} font-bold text-2xl mb-4`}
@@ -69,6 +69,7 @@ const Contact = () => {
 };
 
 function ContactForm() {
+  const { theme } = useThemeContext();
   const [interest, setInterest] = useState<string[]>(["UI/UX design"]);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -79,7 +80,7 @@ function ContactForm() {
   const [website, setWebsite] = useState("");
   const [sentOnce, setSentOnce] = useState(false);
 
-  const interests = ["UI/UX design", "Web design", "Design system", "Other"];
+  const interests = ["UI/UX design", "Web design", "Design system", "Outros"];
 
   function toggleInterest(i: string) {
     setInterest((s) => (s.includes(i) ? s.filter((x) => x !== i) : [...s, i]));
@@ -127,9 +128,11 @@ function ContactForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="border-2 space-y-3 py-5 px-5 md:py-0 md:px-0 md:border-0 rounded-2xl w-[21rem] bg-[#f2f2f2] md:bg-transparent"
+      className={`border-2 space-y-3 py-5 px-5 xl:py-0 xl:px-0 md:py-5 md:px-8 md:border-0 rounded-2xl md:w-[32rem] xl:w-[25rem] ${theme === "dark" ? "bg-[#f2f2f2]" : "bg-[#00BC7D]"}  xl:bg-transparent`}
     >
-      <label className="font-poppins text-sm text-black md:text-current">
+      <label
+        className={`font-poppins text-sm ${theme === "dark" ? "text-black" : "text-[#f2f2f2]"} xl:text-current`}
+      >
         Estou interessado em...
       </label>
       <div className="flex flex-wrap gap-3 pt-2">
@@ -155,7 +158,7 @@ function ContactForm() {
           value={name}
           onChange={(e) => setName(e.target.value)}
           placeholder="Seu Nome"
-          className="w-full border-b border-gray-300 py-2 px-1 placeholder-gray-400 focus:outline-none"
+          className={`w-full border-b border-gray-300 py-2 px-1 ${theme === "dark" ? "placeholder-gray-400" : "placeholder-gray-300"} focus:outline-none  xl:placeholder-gray-400`}
         />
       </div>
 
@@ -165,7 +168,7 @@ function ContactForm() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Seu Email"
-          className="w-full border-b border-gray-300 py-2 px-1 placeholder-gray-400 focus:outline-none"
+          className={`w-full border-b border-gray-300 py-2 px-1 ${theme === "dark" ? "placeholder-gray-400" : "placeholder-gray-300"}  xl:placeholder-gray-400 focus:outline-none `}
         />
       </div>
 
@@ -175,7 +178,7 @@ function ContactForm() {
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           placeholder="Sua mensagem"
-          className="w-full h-32 border-b border-gray-300 py-2 px-1 placeholder-gray-400 focus:outline-none resize-none"
+          className={`w-full h-32 border-b border-gray-300 py-2 px-1 ${theme === "dark" ? "placeholder-gray-400" : "placeholder-gray-300"} focus:outline-none resize-none xl:placeholder-gray-400`}
         />
       </div>
 

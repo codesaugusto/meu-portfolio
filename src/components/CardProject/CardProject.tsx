@@ -68,9 +68,9 @@ function ProjectCard({
       ref={ref as React.RefObject<HTMLDivElement>}
       whileTap={{ scale: 0.95 }}
       style={{
-        cursor: "pointer",
-        willChange: "transform",
-        backfaceVisibility: "hidden",
+        hyphens: "none",
+        WebkitHyphens: "none",
+        msHyphens: "none",
       }}
       className="grid rounded-2xl text-left"
     >
@@ -104,6 +104,7 @@ function ProjectCard({
           <p
             lang="pt-BR"
             style={{
+              hyphens: "none",
               WebkitHyphens: "auto",
               msHyphens: "auto",
             }}

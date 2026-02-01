@@ -42,8 +42,9 @@ function ServiceCard({ icon, title, description }: ServiceCardProps) {
           <p
             lang="pt-BR"
             style={{
-              WebkitHyphens: "auto",
-              msHyphens: "auto",
+              hyphens: "none",
+              WebkitHyphens: "none",
+              msHyphens: "none",
             }}
             className="text-md font-semibold font-poppins select-none wrap-break-word tracking-[-0.12px] mt-5 md:tracking-[-0.08px] [word-spacing:-0.06em]"
           >

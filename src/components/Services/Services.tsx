@@ -36,7 +36,7 @@ function ServiceCard({ icon, title, description }: ServiceCardProps) {
           </div>
         </div>
         <div className="px-4 mt-2">
-          <h3 className="text-xl font-bold font-poppins text-current text-center mb-2">
+          <h3 className="text-xl font-bold font-poppins text-current text-center mb-2 select-none">
             {title}
           </h3>
           <p

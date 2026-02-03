@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { motion, useAnimation } from "framer-motion";
 import useInViewAnimation from "../../hooks/useInViewAnimation";
 import {
@@ -33,10 +34,12 @@ function ProjectCard({
   imgSrc = "",
   description = "",
   icon = "",
+  href,
 }: {
   imgSrc?: string;
   description?: string;
   icon?: React.ReactNode;
+  href?: string;
 }) {
   const { ref, inView } = useInViewAnimation({
     once: false,
@@ -63,7 +66,7 @@ function ProjectCard({
     }
   }, [inView, imgControls]);
 
-  return (
+  const inner = (
     <motion.div
       ref={ref as React.RefObject<HTMLDivElement>}
       whileTap={{ scale: 0.95 }}
@@ -71,6 +74,7 @@ function ProjectCard({
         hyphens: "none",
         WebkitHyphens: "none",
         msHyphens: "none",
+        cursor: "pointer",
       }}
       className="grid rounded-2xl text-left"
     >
@@ -118,13 +122,31 @@ function ProjectCard({
       </motion.div>
     </motion.div>
   );
+
+  if (href) {
+    const isExternal =
+      href.startsWith("http://") || href.startsWith("https://");
+    return (
+      <Link
+        to={href}
+        target={isExternal ? "_blank" : undefined}
+        rel={isExternal ? "noopener noreferrer" : undefined}
+        aria-label={description ? description : "Project link"}
+        className="no-underline"
+      >
+        {inner}
+      </Link>
+    );
+  }
+
+  return inner;
 }
 
 export function CardProject() {
   return (
     <div
       id="projects"
-      className="justify-center grid gap-12 pt-22 xl:pt-34 xl:pb-20"
+      className="justify-center grid gap-12 pt-22 xl:pt-34 xl:pb-48"
     >
       <h1 className="text-4xl text-current flex justify-center items-center font-semibold font-poppins">
         Meus Projetos
@@ -167,6 +189,7 @@ export function CardProject() {
             description={
               "Web Scraping - Raspagem de dados de preços de placas de video de um site e-commerce, feito com uso das bibliotecas Selenium, OS, pandas, re, math"
             }
+            href="https://github.com/codesaugusto/scraping_dados_gpu"
             icon={
               <Icons
                 icons={[

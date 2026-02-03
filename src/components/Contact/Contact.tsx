@@ -11,13 +11,13 @@ const Contact = () => {
     <div
       id="contact"
       onClick={() => handleSmoothScroll({ id: "contact" })}
-      className="flex pt-5 md:pt-[9rem] xl:pt-[9rem] flex-col md:gap-2 xl:gap-14 md:mt-0 mt-8"
+      className="flex pt-5 md:pt-[9rem] xl:pt-[2rem] flex-col md:gap-2 xl:gap-14 md:mt-0 mt-8"
     >
       <h1 className="text-current text-4xl flex justify-center items-center font-semibold font-poppins">
         Contato
       </h1>
       <div className=" grid">
-        <div className="flex flex-col mx-auto justify-center md:flex-row items-center md:justify-end md:mx-65 xl:mx-auto rounded-xl md:h-auto pt-12 md:pt-0 xl:pt-8 md:py-6 md:pr-9 xl:px-2 xl:pr-9 xl:py-9 bg-transparent xl:bg-linear-to-r xl:from-[#00BC7D] xl:via-[#219b72] xl:to-[#1f855c] mb-11">
+        <div className="flex flex-col mx-auto justify-center lg:px-12 lg:justify-center md:flex-row items-center md:justify-end xl:mx-auto rounded-xl md:h-auto pt-12 md:pt-0 xl:pt-8 md:py-6 md:px-auto md:mx-auto xl:justify-center xl:py-9 bg-transparent xl:bg-linear-to-r xl:from-[#00BC7D] xl:via-[#219b72] xl:to-[#1f855c] mb-11">
           <div className="hidden xl:grid grid-cols-1 pl-12 xl:mx-0 text-start items-center mx-auto">
             <div className="pb-14 flex justify-between h-full">
               <div className="items-start flex flex-col gap-10">
@@ -79,6 +79,11 @@ function ContactForm() {
   // honeypot
   const [website, setWebsite] = useState("");
   const [sentOnce, setSentOnce] = useState(false);
+
+  // limites de caracteres
+  const MAX_NAME = 100;
+  const MAX_EMAIL = 254;
+  const MAX_MESSAGE = 1000;
 
   const interests = ["UI/UX design", "Web design", "Design system", "Outros"];
 
@@ -156,9 +161,10 @@ function ContactForm() {
         <input
           name="name"
           value={name}
-          onChange={(e) => setName(e.target.value)}
+          maxLength={MAX_NAME}
+          onChange={(e) => setName(e.target.value.slice(0, MAX_NAME))}
           placeholder="Seu Nome"
-          className={`w-full border-b border-gray-300 py-2 px-1 ${theme === "dark" ? "placeholder-gray-400" : "placeholder-gray-300"} focus:outline-none  xl:placeholder-gray-400`}
+          className={`w-full border-b border-gray-300 placeholder-gray-300 py-2 px-1 ${theme === "dark" ? "placeholder-gray-400 text-[#f2f2f2]" : "placeholder-gray-300 text-black  "} focus:outline-none  xl:placeholder-gray-400`}
         />
       </div>
 
@@ -166,9 +172,10 @@ function ContactForm() {
         <input
           name="email"
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          maxLength={MAX_EMAIL}
+          onChange={(e) => setEmail(e.target.value.slice(0, MAX_EMAIL))}
           placeholder="Seu Email"
-          className={`w-full border-b border-gray-300 py-2 px-1 ${theme === "dark" ? "placeholder-gray-400" : "placeholder-gray-300"}  xl:placeholder-gray-400 focus:outline-none `}
+          className={`w-full border-b border-gray-300 placeholder-gray-300 py-2 px-1 ${theme === "dark" ? "placeholder-gray-400 text-[#f2f2f2]" : "placeholder-gray-300 text-black  "}  xl:placeholder-gray-400 focus:outline-none `}
         />
       </div>
 
@@ -176,9 +183,10 @@ function ContactForm() {
         <textarea
           name="message"
           value={message}
-          onChange={(e) => setMessage(e.target.value)}
+          maxLength={MAX_MESSAGE}
+          onChange={(e) => setMessage(e.target.value.slice(0, MAX_MESSAGE))}
           placeholder="Sua mensagem"
-          className={`w-full h-32 border-b border-gray-300 py-2 px-1 ${theme === "dark" ? "placeholder-gray-400" : "placeholder-gray-300"} focus:outline-none resize-none xl:placeholder-gray-400`}
+          className={`w-full h-32 border-b border-gray-300 placeholder-gray-300 py-2 px-1 ${theme === "dark" ? "placeholder-gray-400 text-[#f2f2f2]" : "placeholder-gray-300 text-black  "} focus:outline-none resize-none xl:placeholder-gray-400`}
         />
       </div>
 

@@ -1,6 +1,7 @@
 import "../../index.css";
 import { FiInstagram } from "react-icons/fi";
 import ThemeToggle from "../ThemeToggle/ThemeToggle";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
@@ -11,9 +12,12 @@ const Header = () => {
       <header className="w-full">
         <div className="flex items-center justify-between">
           <div className="justify-start flex gap-2 items-center">
-            <h1 className="md:text-3xl text-2xl font-semibold font-montserrat italic text-current">
+            <Link
+              to="https://www.instagram.com/codes.augusto/"
+              className="md:text-3xl cursor-pointer text-2xl font-semibold font-montserrat italic text-current"
+            >
               @codes.augusto
-            </h1>
+            </Link>
             <span className="text-4xl">
               <FiInstagram className="md:w-8 md:h-12 w-7 h-8 text-current" />
             </span>

@@ -1,4 +1,6 @@
 import { SiGithub, SiInstagram, SiLinkedin, SiWhatsapp } from "react-icons/si";
+import { handleSmoothScroll } from "../../utils/smooth";
+import { Link } from "react-router-dom";
 
 export default function Footer() {
   return (
@@ -9,36 +11,56 @@ export default function Footer() {
 
       <footer className="flex flex-col bg-[#f2f2f2] dark:bg-[#0E0930] items-center justify-around w-full md:py-6 pb-6 text-sm text-gray-800/70">
         <div className="hidden md:flex items-center md:gap-8 gap-5">
-          <a
-            href="#home"
+          <Link
+            to="#home"
+            onClick={(e) => {
+              e.preventDefault();
+              handleSmoothScroll({ id: "home" });
+            }}
             className="font-medium dark:text-white text-gray-500 hover:text-black transition-all"
           >
             Home
-          </a>
-          <a
-            href="#about"
+          </Link>
+          <Link
+            to="#about"
+            onClick={(e) => {
+              e.preventDefault();
+              handleSmoothScroll({ id: "about" });
+            }}
             className="font-medium dark:text-white text-gray-500 hover:text-black transition-all"
           >
             Sobre Mim
-          </a>
-          <a
-            href="#projects"
+          </Link>
+          <Link
+            to="#projects"
+            onClick={(e) => {
+              e.preventDefault();
+              handleSmoothScroll({ id: "projects" });
+            }}
             className="font-medium dark:text-white text-gray-500 hover:text-black transition-all"
           >
             Projetos
-          </a>
-          <a
-            href="#contact"
+          </Link>
+          <Link
+            to="#contact"
+            onClick={(e) => {
+              e.preventDefault();
+              handleSmoothScroll({ id: "contact" });
+            }}
             className="font-medium dark:text-white text-gray-500 hover:text-black transition-all"
           >
             Contato
-          </a>
-          <a
-            href="#services"
+          </Link>
+          <Link
+            to="#services"
+            onClick={(e) => {
+              e.preventDefault();
+              handleSmoothScroll({ id: "services" });
+            }}
             className="font-medium dark:text-white text-gray-500 hover:text-black transition-all"
           >
             Serviços
-          </a>
+          </Link>
         </div>
         <div className="flex items-center gap-4 md:mt-8 text-[#209168]">
           <a
@@ -76,7 +98,13 @@ export default function Footer() {
         </div>
         <p className="mt-8 text-center italic dark:text-white">
           Copyright © {new Date().getFullYear()}{" "}
-          <a href="https://prebuiltui.com" target="_blank" rel="noreferrer">
+          <a
+            href="#home"
+            onClick={(e) => {
+              e.preventDefault();
+              handleSmoothScroll({ id: "home" });
+            }}
+          >
             codes.augusto feito com ❤️
           </a>
         </p>

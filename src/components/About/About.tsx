@@ -11,18 +11,6 @@ const About = () => {
       id="about"
       className="relative overflow-hidden xl:pb-38 xl:pt-6 pt-22 mt-[8rem] md:mt-[5rem]"
     >
-      {/* Camada das estrelas (apenas no modo escuro) */}
-      {theme === "dark" && (
-        <div
-          className="
-  absolute inset-0 opacity-33
-  bg-cover bg-center bg-no-repeat
-  pointer-events-none
-  z-0
-"
-        />
-      )}
-
       {/* Conteúdo */}
       <div className="relative z-10 justify-center grid gap-14">
         <h1
@@ -34,7 +22,7 @@ const About = () => {
           <div
             ref={ref}
             className={`
-            transition-all duration-700 ease-out
+            transition-all duration-900 ease-in
             ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}
           `}
           >

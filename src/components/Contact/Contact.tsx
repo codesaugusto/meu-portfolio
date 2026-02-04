@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useThemeContext } from "../../context/useThemeContext";
 import { handleSmoothScroll } from "../../utils/smooth";
 import { isValidEmail } from "../../lib/utils";
+import { motion } from "framer-motion";
 
 const Contact = () => {
   const { theme } = useThemeContext();
@@ -17,7 +18,7 @@ const Contact = () => {
         Contato
       </h1>
       <div className=" grid">
-        <div className="flex flex-col mx-auto justify-center lg:px-12 lg:justify-center md:flex-row items-center md:justify-end xl:mx-auto rounded-xl md:h-auto pt-12 md:pt-0 xl:pt-8 md:py-6 md:px-auto md:mx-auto xl:justify-center xl:py-9 bg-transparent xl:bg-linear-to-r xl:from-[#00BC7D] xl:via-[#219b72] xl:to-[#1f855c] mb-11">
+        <div className="flex flex-col mx-auto justify-center lg:px-12 lg:justify-center md:flex-row items-center md:justify-end xl:mx-auto rounded-xl md:h-auto pt-12 md:pt-0 xl:pt-8 md:py-6 md:px-auto md:mx-auto xl:justify-center xl:py-9 bg-transparent xl:bg-linear-to-r xl:from-[#00BC7D] xl:via-[#219b72] xl:to-[#1f855c] mb-11 shadow-xl shadow-black/30">
           <div className="hidden xl:grid grid-cols-1 pl-12 xl:mx-0 text-start items-center mx-auto">
             <div className="pb-14 flex justify-between h-full">
               <div className="items-start flex flex-col gap-10">
@@ -30,11 +31,13 @@ const Contact = () => {
                   </span>
                   juntos!
                 </h1>
-                <img
+                <motion.img
                   src="/imgs/social-interaction-amico.svg"
                   alt="People illustrations by Storyset"
                   loading="lazy"
                   decoding="async"
+                  animate={{ y: [0, -20, 0] }}
+                  transition={{ duration: 5, repeat: Infinity }}
                   className="w-[28rem] max-w-full h-auto"
                 />
               </div>

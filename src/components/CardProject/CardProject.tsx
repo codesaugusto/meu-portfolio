@@ -36,11 +36,13 @@ function ProjectCard({
   description = "",
   icon = "",
   href,
+  title = "",
 }: {
   imgSrc?: string;
   description?: string;
   icon?: React.ReactNode;
   href?: string;
+  title?: string;
 }) {
   const { ref, inView } = useInViewAnimation({
     once: false,
@@ -79,7 +81,7 @@ function ProjectCard({
       }}
       className="grid rounded-2xl text-left"
     >
-      <motion.div className="flex flex-col items-center bg-[#00BC7D] gap-4 rounded-2xl w-[18rem] h-[27rem] md:w-[25rem] shadow-lg shadow-black/60 md:h-[29rem] p-4">
+      <motion.div className="flex flex-col items-center bg-[#00BC7D] gap-4 rounded-2xl w-[18rem] h-[27rem] md:w-[25rem] shadow-lg shadow-black/60 md:h-[31rem] p-4">
         <div className="mx-auto mt-4 flex rounded-2xl w-[16rem] h-[15rem]  md:w-[21rem] md:h-[14rem] select-none overflow-hidden">
           {imgSrc ? (
             <motion.img
@@ -105,20 +107,25 @@ function ProjectCard({
             </div>
           )}
         </div>
-        <div className="px-4 mt-2">
+        <div className="px-4 mt-2 flex flex-col flex-1">
+          {title && (
+            <h3 className="text-xl font-bold font-poppins text-current text-center mb-2">
+              {title}
+            </h3>
+          )}
           <p
             lang="pt-BR"
             style={{
               hyphens: "none",
-              WebkitHyphens: "auto",
-              msHyphens: "auto",
+              WebkitHyphens: "none",
+              msHyphens: "none",
             }}
             className="font-semibold font-poppins select-none wrap-break-word tracking-[-0.12px] md:tracking-[-0.08px] [word-spacing:-0.06em]"
           >
             {description}
           </p>
           {/* ICONES */}
-          <div className="mt-4 flex gap-3">{icon}</div>
+          <div className="mt-auto flex gap-3 pb-4">{icon}</div>
         </div>
       </motion.div>
     </motion.div>
@@ -156,8 +163,9 @@ export function CardProject() {
       <div className="grid md:grid-cols-2 xl:grid-cols-3 grid-cols-1 justify-center gap-22 xl:px-0 md:gap-16 md:px-12 md:pr-16 xl:pr-0 xl:gap-22">
         <ProjectCard
           imgSrc="../../../imgs/img_bot_discord_deals.jpg"
+          title="Discord Deals Offerts"
           description={
-            "Discord Deals Offerts - Um disparador de jogos gratuitos e pagos desenvoldido com Python, para canais de servidores Discord."
+            "Um disparador de jogos gratuitos e pagos desenvoldido com Python, para canais de servidores Discord."
           }
           href="https://github.com/codesaugusto/discord_deals_offerts"
           icon={
@@ -172,8 +180,9 @@ export function CardProject() {
         />
         <ProjectCard
           imgSrc="../../../imgs/turcb.png"
+          title="TurCB"
           description={
-            "TurCB - Um bot para WhatsApp, que dispara informações turisticas relevantes para a cidade de Corumbá desenvolvido com Node.js e MongoDB."
+            "Um bot para WhatsApp, que dispara informações turisticas para a cidade de Corumbá desenvolvido com Node.js e MongoDB."
           }
           href="https://github.com/codesaugusto/turcb_bot"
           icon={
@@ -190,8 +199,9 @@ export function CardProject() {
         <div className="md:col-span-2 md:flex md:justify-center xl:col-span-1">
           <ProjectCard
             imgSrc="../../../imgs/scraping_gpu.png"
+            title="Web Scraping"
             description={
-              "Web Scraping - Raspagem de dados de preços de placas de video de um site e-commerce, feito com uso das bibliotecas Selenium, OS, pandas, re, math"
+              "Raspagem de dados de preços de placas de vídeo de um site e-commerce, usando Selenium, pandas e ferramentas auxiliares."
             }
             href="https://github.com/codesaugusto/scraping_dados_gpu"
             icon={

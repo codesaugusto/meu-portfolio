@@ -18,7 +18,7 @@ const Contact = () => {
         Contato
       </h1>
       <div className=" grid">
-        <div className="flex flex-col mx-auto justify-center lg:px-12 lg:justify-center md:flex-row items-center md:justify-end xl:mx-auto rounded-xl md:h-auto pt-12 md:pt-0 xl:pt-8 md:py-6 md:px-auto md:mx-auto xl:justify-center xl:py-9 bg-transparent xl:bg-linear-to-r xl:from-[#00BC7D] xl:via-[#219b72] xl:to-[#1f855c] mb-11 shadow-xl shadow-black/30">
+        <div className="flex flex-col mx-auto justify-center lg:px-12 lg:justify-center md:flex-row items-center md:justify-end xl:mx-auto rounded-xl md:h-auto pt-12 md:pt-0 xl:pt-8 md:py-6 md:px-auto md:mx-auto xl:justify-center xl:py-9 bg-transparent xl:bg-linear-to-r xl:from-[#00BC7D] xl:via-[#219b72] xl:to-[#1f855c] mb-11 xl:shadow-xl xl:shadow-black/30">
           <div className="hidden xl:grid grid-cols-1 pl-12 xl:mx-0 text-start items-center mx-auto">
             <div className="pb-14 flex justify-between h-full">
               <div className="items-start flex flex-col gap-10">
@@ -44,7 +44,7 @@ const Contact = () => {
             </div>
           </div>
           <div
-            className={`h-full xl:h-[35rem] lg:w-1/2 xl:w-[32rem] w-[21rem] rounded-2xl md:py-4 xl:py-6 ${
+            className={`h-full xl:h-[35rem] lg:w-1/2 xl:w-[32rem] w-[21rem] rounded-2xl md:py-4 xl:py-6 xl:flex ${
               theme === "dark"
                 ? "bg-[#0e0930] via-[#0a001e] to-[#343485]"
                 : "bg-[#f2f2f2]"

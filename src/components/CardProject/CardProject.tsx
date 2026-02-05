@@ -81,7 +81,10 @@ function ProjectCard({
       }}
       className="grid rounded-2xl text-left"
     >
-      <motion.div className="flex flex-col items-center bg-[#00BC7D] gap-4 rounded-2xl w-[18rem] h-[27rem] md:w-[25rem] shadow-lg shadow-black/60 md:h-[31rem] p-4">
+      <motion.div
+        whileHover={{ scale: 1.04 }}
+        className="flex flex-col items-center bg-[#00BC7D] gap-4 rounded-2xl w-[18rem] h-[27rem] md:w-[25rem] shadow-lg shadow-black/60 md:h-[31rem] p-4"
+      >
         <div className="mx-auto mt-4 flex rounded-2xl w-[16rem] h-[15rem]  md:w-[21rem] md:h-[14rem] select-none overflow-hidden">
           {imgSrc ? (
             <motion.img

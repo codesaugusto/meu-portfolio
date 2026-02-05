@@ -1,4 +1,4 @@
-// switched from SendGrid to Mailjet (using Mailjet v3.1 send API)
+// este módulo exporta uma função async que trata requisições HTTP para enviar um e‑mail via Mailjet; faz validação, saneamento, rate limiting básico, parse do corpo, montagem do payload e envio por HTTP.
 
 // Simple in-memory rate limiter (works best for single-instance deployments).
 const RATE_WINDOW_MS = 60 * 60 * 1000; // 1 hour
@@ -169,16 +169,20 @@ export default async function (req, res) {
       ],
     };
 
-    // Use node-mailjet SDK (support both CJS and ESM shapes)
-    const mailjetMod = await import("node-mailjet");
-    const mailjetLib = mailjetMod.default ?? mailjetMod;
-    const mailjet = mailjetLib.connect(apiKey, apiSecret);
-
-    const request = mailjet.post("send", { version: "v3.1" }).request(payload);
-    const result = await request;
+    // Send via Mailjet HTTP API using axios (avoid SDK compatibility issues)
+    const axiosMod = await import("axios");
+    const axios = axiosMod.default ?? axiosMod;
+    const mjUrl = "https://api.mailjet.com/v3.1/send";
+    const token = Buffer.from(`${apiKey}:${apiSecret}`).toString("base64");
+    const result = await axios.post(mjUrl, payload, {
+      headers: {
+        Authorization: `Basic ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
 
     // Mailjet returns 200/201 on success; include body in log for debugging
-    console.log("mailjet result status:", result.status, "body:", result.body);
+    console.log("mailjet result status:", result.status, "body:", result.data);
     return res.status(200).json({ ok: true });
   } catch (err) {
     console.error("mailjet send error", err);

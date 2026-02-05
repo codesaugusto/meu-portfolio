@@ -21,6 +21,7 @@ function ServiceCard({ icon, title, description }: ServiceCardProps) {
     <motion.div
       ref={ref as React.RefObject<HTMLDivElement>}
       whileTap={{ scale: 0.95 }}
+      whileHover={{ scale: 1.04 }}
       style={{
         cursor: "pointer",
         willChange: "transform",

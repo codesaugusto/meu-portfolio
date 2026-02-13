@@ -9,7 +9,7 @@ const About = () => {
   return (
     <div
       id="about"
-      className={`relative overflow-hidden xl:pb-28 xl:pt-14 pt-22 mt-[8rem] md:mt-[5rem] ${theme === "dark" ? "bg-[#00BC7D]" : "bg-[#e7dede]"}`}
+      className={`relative overflow-hidden xl:pb-28 xl:pt-14 pt-6 mt-8 md:mt-20 ${theme === "dark" ? "bg-[#00BC7D]" : "bg-[#e7dede]"}`}
     >
       {/* Conteúdo */}
       <div className="relative z-10 justify-center grid gap-14">

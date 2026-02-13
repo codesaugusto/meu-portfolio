@@ -1,17 +1,11 @@
 import "../../index.css";
 import { motion } from "framer-motion";
-import { useEffect } from "react";
 import { CodeXml, Home, Grid, User, Mail } from "lucide-react";
 import { handleSmoothScroll } from "../../utils/smooth";
 import useActiveSection from "../../hooks/useActiveSection";
 
 const Hero = () => {
   const active = useActiveSection(["home", "projects", "about", "contact"]);
-
-  useEffect(() => {
-    // eslint-disable-next-line no-console
-    console.debug("[Hero] active section:", active);
-  }, [active]);
 
   return (
     <div
@@ -32,7 +26,7 @@ const Hero = () => {
               WebkitHyphens: "none",
               msHyphens: "none",
             }}
-            className="md:text-6xl text-3xl font-poppins leading-tight md:pt-16 pt-22 text-center md:text-center md:font-[450] font-bold"
+            className="md:text-6xl text-3xl font-poppins leading-tight md:pt-16 pt-12 text-center md:text-center md:font-[450] font-bold"
           >
             <span className="block dark:text-appTextDark">
               Transformo <span className="text-emerald-500">ideias </span>
@@ -58,33 +52,61 @@ const Hero = () => {
           <>
             <button
               onClick={() => handleSmoothScroll({ id: "home" })}
-              className={`flex flex-col items-center ${active === "home" ? "text-emerald-500" : "text-slate-500"}`}
+              className={`flex flex-col items-center`}
             >
-              <Home className="w-6 h-6" />
-              <span className="text-xs mt-1 font-semibold">INÍCIO</span>
+              <Home
+                className="w-6 h-6"
+                color={active === "home" ? "#10B981" : "#6B7280"}
+              />
+              <span
+                className={`text-xs mt-1 font-semibold ${active === "home" ? "text-emerald-500" : "text-slate-500"}`}
+              >
+                INÍCIO
+              </span>
             </button>
 
             <button
               onClick={() => handleSmoothScroll({ id: "about" })}
-              className={`flex flex-col items-center ${active === "about" ? "text-emerald-500" : "text-slate-500"}`}
+              className={`flex flex-col items-center`}
             >
-              <User className="w-6 h-6" />
-              <span className="text-xs mt-1">SOBRE</span>
+              <User
+                className="w-6 h-6"
+                color={active === "about" ? "#10B981" : "#6B7280"}
+              />
+              <span
+                className={`text-xs mt-1 ${active === "about" ? "text-emerald-500" : "text-slate-500"}`}
+              >
+                SOBRE
+              </span>
             </button>
             <button
               onClick={() => handleSmoothScroll({ id: "projects" })}
-              className={`flex flex-col items-center ${active === "projects" ? "text-emerald-500" : "text-slate-500"}`}
+              className={`flex flex-col items-center`}
             >
-              <Grid className="w-6 h-6" />
-              <span className="text-xs mt-1">PROJETOS</span>
+              <Grid
+                className="w-6 h-6"
+                color={active === "projects" ? "#10B981" : "#6B7280"}
+              />
+              <span
+                className={`text-xs mt-1 ${active === "projects" ? "text-emerald-500" : "text-slate-500"}`}
+              >
+                PROJETOS
+              </span>
             </button>
 
             <button
               onClick={() => handleSmoothScroll({ id: "contact" })}
-              className={`flex flex-col items-center ${active === "contact" ? "text-emerald-500" : "text-slate-500"}`}
+              className={`flex flex-col items-center`}
             >
-              <Mail className="w-6 h-6" />
-              <span className="text-xs mt-1">EMAIL</span>
+              <Mail
+                className="w-6 h-6"
+                color={active === "contact" ? "#10B981" : "#6B7280"}
+              />
+              <span
+                className={`text-xs mt-1 ${active === "contact" ? "text-emerald-500" : "text-slate-500"}`}
+              >
+                EMAIL
+              </span>
             </button>
           </>
         </div>

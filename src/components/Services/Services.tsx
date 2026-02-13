@@ -23,7 +23,7 @@ function ServiceCard({ icon, title, description }: ServiceCardProps) {
       className="rounded-2xl text-left"
     >
       <motion.div className="flex flex-col items-center bg-[#00BC7D] gap-4 rounded-2xl w-[18rem] h-[27rem] md:w-[25rem] shadow-lg shadow-black/60 md:h-[29rem] p-4">
-        <div className="mx-auto mt-4 flex rounded-2xl w-[16rem] h-[15rem]  md:w-[21rem] md:h-[14rem] select-none overflow-hidden">
+        <div className="mx-auto mt-4 flex rounded-2xl w-[16rem] h-[15rem] md:w-[21rem] md:h-[14rem] select-none overflow-hidden">
           <div className="w-full h-full rounded-2xl bg-white/7 flex items-center justify-center text-6xl text-current">
             {icon}
           </div>
@@ -54,7 +54,7 @@ const Services = () => {
   return (
     <div
       id="services"
-      className="justify-center grid gap-12 pt-22 xl:pt-34 xl:pb-30"
+      className="justify-center grid gap-12 px-10 pt-2 md:pt-12 xl:pt-20 xl:pb-30"
     >
       <h1 className="text-4xl text-current flex justify-center items-center font-semibold font-poppins">
         Como posso te ajudar?

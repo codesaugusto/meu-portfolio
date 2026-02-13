@@ -157,7 +157,7 @@ export function CardProject() {
   return (
     <div
       id="projects"
-      className="justify-center grid gap-12 pt-22 xl:pt-34 xl:pb-48"
+      className="justify-center grid gap-12 pt-8 md:pt-12 xl:pt-24 xl:pb-48"
     >
       <h1 className="text-4xl text-current flex justify-center items-center font-semibold font-poppins">
         Meus Projetos

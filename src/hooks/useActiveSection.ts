@@ -1,100 +1,96 @@
 import { useEffect, useRef, useState } from "react";
-import useInViewContext from "../context/useInViewContext";
 
-// Hook robusto para detectar seção ativa
-// - observa múltiplas seções
-// - escolhe a seção com maior intersectionRatio
-// - re-tenta observar seções que aparecem depois (MutationObserver)
+// Simples e confiável: calcula, a cada frame via scroll/resize, qual seção tem
+// maior área visível na viewport e retorna seu id. Evita observers globais
+// que podem competir com o ciclo de commit do React em alguns ambientes.
 export default function useActiveSection(sectionIds: string[]) {
-  const { observe, unobserve } = useInViewContext();
   const [active, setActive] = useState<string | null>(null);
-  const ratiosRef = useRef<Map<string, number>>(new Map());
+  const rafRef = useRef<number | null>(null);
+  const retryRef = useRef<number | null>(null);
 
   useEffect(() => {
-    const callbacks: {
-      el: Element;
-      cb: (entry: IntersectionObserverEntry) => void;
-    }[] = [];
-    const observed = new Set<string>();
+    let mounted = true;
 
-    const registerIfPresent = (id: string) => {
-      if (observed.has(id)) return;
-      const el = document.getElementById(id);
-      if (!el) return false;
+    const compute = () => {
+      let best: string | null = null;
+      let bestRatio = 0;
+      const vh = window.innerHeight || document.documentElement.clientHeight;
 
-      const cb = (entry: IntersectionObserverEntry) => {
-        const ratio = entry.isIntersecting
-          ? entry.intersectionRatio || 0.001
-          : 0;
-        ratiosRef.current.set(id, ratio);
-
-        // debug: log entry info
-        // eslint-disable-next-line no-console
-        console.debug(
-          `[useActiveSection] entry: id=${id} isIntersecting=${entry.isIntersecting} ratio=${ratio}`,
+      for (const id of sectionIds) {
+        const el = document.getElementById(id);
+        if (!el) continue;
+        const r = el.getBoundingClientRect();
+        if (r.height <= 0) continue;
+        const visible = Math.max(
+          0,
+          Math.min(r.bottom, vh) - Math.max(r.top, 0),
         );
+        const ratio = Math.min(1, Math.max(0, visible / r.height));
+        if (ratio > bestRatio) {
+          bestRatio = ratio;
+          best = id;
+        }
+      }
 
-        // pick the id with highest ratio
-        let best: string | null = null;
-        let bestRatio = 0;
-        ratiosRef.current.forEach((r, key) => {
-          if (r > bestRatio) {
-            bestRatio = r;
-            best = key;
-          }
-        });
-
-        // debug: chosen best
-        // eslint-disable-next-line no-console
-        console.debug(
-          `[useActiveSection] chosen best=${best} bestRatio=${bestRatio}`,
-        );
-
-        if (best !== active) setActive(best);
-      };
-
-      // debug: registering observer for this id
-      // eslint-disable-next-line no-console
-      console.debug(`[useActiveSection] registering observer for id=${id}`);
-      observe(el, cb);
-      callbacks.push({ el, cb });
-      observed.add(id);
-      return true;
+      if (!mounted) return;
+      setActive((prev) => {
+        if (prev !== best) {
+          console.debug("[useActiveSection] active ->", best, bestRatio);
+        }
+        return best;
+      });
     };
 
-    // try register all
-    sectionIds.forEach(registerIfPresent);
-
-    // if some are not present, watch DOM and retry
-    let mo: MutationObserver | null = null;
-    const missing = sectionIds.some((id) => !observed.has(id));
-    if (missing && typeof MutationObserver !== "undefined") {
-      mo = new MutationObserver(() => {
-        sectionIds.forEach(registerIfPresent);
-        const stillMissing = sectionIds.some((id) => !observed.has(id));
-        if (!stillMissing && mo) {
-          try {
-            mo.disconnect();
-          } catch {}
-          mo = null;
-        }
+    const schedule = () => {
+      if (rafRef.current != null) return;
+      rafRef.current = requestAnimationFrame(() => {
+        rafRef.current = null;
+        compute();
       });
-      mo.observe(document.body, { childList: true, subtree: true });
-    }
+    };
+
+    // initial compute
+    schedule();
+
+    // short retry in case sections render after mount (no MutationObserver)
+    let attempts = 0;
+    retryRef.current = window.setInterval(() => {
+      attempts += 1;
+      schedule();
+      if (attempts >= 6 && retryRef.current) {
+        clearInterval(retryRef.current);
+        retryRef.current = null;
+      }
+    }, 300) as unknown as number;
+
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule);
+    window.addEventListener("orientationchange", schedule);
 
     return () => {
-      callbacks.forEach(({ el, cb }) => unobserve(el, cb));
-      ratiosRef.current.clear();
-      observed.clear();
-      if (mo) {
+      mounted = false;
+      if (rafRef.current) {
         try {
-          mo.disconnect();
-        } catch {}
-        mo = null;
+          cancelAnimationFrame(rafRef.current);
+        } catch {
+          console.error();
+        }
+        rafRef.current = null;
       }
+      if (retryRef.current) {
+        try {
+          clearInterval(retryRef.current);
+        } catch {
+          console.error();
+        }
+        retryRef.current = null;
+      }
+      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", schedule);
+      window.removeEventListener("orientationchange", schedule);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [observe, unobserve, ...sectionIds]);
+  }, [...sectionIds]);
 
   return active;
 }

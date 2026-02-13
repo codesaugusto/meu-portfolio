@@ -49,7 +49,7 @@ const Button = () => {
             aria-label="Serviços"
             className="w-52 h-13 bg-emerald-500 text-white py-3 rounded-xl shadow-lg flex items-center justify-center gap-3 font-bold font-poppins text-lg"
           >
-            <Zap className="md:w-5 md:h-5 w-6 h-6 text-white" />
+            <Zap className="md:w-5 md:h-5 w-6 h-6 text-current" />
             <span>Serviços</span>
           </button>
 
@@ -58,7 +58,7 @@ const Button = () => {
             aria-label="Contato"
             className={`w-52   h-13 py-3 rounded-xl shadow-md flex items-center justify-center gap-3 font-bold font-poppins text-lg ${contactThemeClasses}`}
           >
-            <PhoneCall className="md:w-5 md:h-5 w-6 h-6 text-white" />
+            <PhoneCall className="md:w-5 md:h-5 w-6 h-6 text-current" />
             <span>Contato</span>
           </button>
         </motion.div>

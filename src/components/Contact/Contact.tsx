@@ -17,8 +17,8 @@ const Contact = () => {
       <h1 className="text-current text-4xl flex justify-center items-center font-semibold font-poppins">
         Contato
       </h1>
-      <div className=" grid">
-        <div className="flex flex-col mx-auto justify-center lg:px-12 lg:justify-center md:flex-row items-center md:justify-end xl:mx-auto rounded-xl md:h-auto pt-12 md:pt-0 xl:pt-8 md:py-6 md:px-auto md:mx-auto xl:justify-center xl:py-9 bg-transparent xl:bg-linear-to-r xl:from-[#00BC7D] xl:via-[#219b72] xl:to-[#1f855c] mb-11 xl:shadow-xl xl:shadow-black/30">
+      <div className="grid">
+        <div className="flex flex-col mx-auto justify-center items-center lg:px-12 lg:justify-center md:flex-row md:justify-end xl:mx-auto rounded-xl md:h-auto pt-4 md:pt-0 xl:pt-8 md:py-6 md:px-auto md:mx-auto xl:justify-center xl:py-9 bg-transparent xl:bg-linear-to-r xl:from-[#00BC7D] xl:via-[#219b72] xl:to-[#1f855c] mb-11 xl:shadow-xl xl:shadow-black/30">
           <div className="hidden xl:grid grid-cols-1 pl-12 xl:mx-0 text-start items-center mx-auto">
             <div className="pb-14 flex justify-between h-full">
               <div className="items-start flex flex-col gap-10">

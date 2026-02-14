@@ -13,18 +13,15 @@ interface StackProps {
 
 function Stack({ icon, description, disableMotion }: StackProps) {
   const content = (
-    <div className="w-8 h-8 flex items-center justify-center">{icon}</div>
+    <div className="w-8 h-8 flex items-start justify-center">{icon}</div>
   );
+
+  const baseClass = "w-full grid grid-cols-[32px_1fr] gap-3 items-start";
 
   const text = (
     <p
       lang="pt-BR"
-      style={{
-        hyphens: "none",
-        WebkitHyphens: "none",
-        msHyphens: "none",
-      }}
-      className="md:text-lg text-sm font-bold font-poppins select-none"
+      className="md:text-lg text-sm font-bold font-poppins select-none text-left"
     >
       {description}
     </p>
@@ -32,7 +29,7 @@ function Stack({ icon, description, disableMotion }: StackProps) {
 
   if (disableMotion) {
     return (
-      <div className="rounded-2xl text-left flex cursor-pointer flex-row items-center gap-2">
+      <div className="rounded-2xl text-center flex cursor-pointer flex-row items-start gap-2">
         {content}
         {text}
       </div>
@@ -40,10 +37,7 @@ function Stack({ icon, description, disableMotion }: StackProps) {
   }
 
   return (
-    <motion.div
-      whileHover={{ scale: 1.03 }}
-      className="rounded-2xl text-left flex cursor-pointer flex-row items-center gap-2"
-    >
+    <motion.div whileHover={{ scale: 1.03 }} className={baseClass}>
       {content}
       {text}
     </motion.div>
@@ -100,8 +94,8 @@ const StackSection = () => {
 
         {isMobile ? (
           <div className="flex items-center justify-center w-[18rem] h-[27rem] bg-emerald-400 gap-7 rounded-2xl md:w-[34rem] shadow-lg shadow-black/60 md:h-[28rem]">
-            <div className="flex flex-col justify-center gap-22 md:gap-16 md:px-12 md:pr-16 xl:gap-8 xl:px-0">
-              <p className="hidden md:flex font-poppins font-bold justify-center pb-4">
+            <div className="flex flex-col items-start justify-center gap-7 w-full px-5 md:gap-16 md:px-12 md:pr-16 xl:gap-8 xl:px-0">
+              <p className="py-2 md:py-0 md:flex font-poppins font-bold justify-center">
                 <span>
                   O que você pode esperar de{" "}
                   <span className="text-[#f2f2f2] dark:text-[#13094E]">

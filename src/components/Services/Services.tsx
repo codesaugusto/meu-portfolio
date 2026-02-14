@@ -19,26 +19,22 @@ function ServiceCard({ icon, title, description }: ServiceCardProps) {
     return (
       <div
         style={{ cursor: "pointer", backfaceVisibility: "hidden" }}
-        className="rounded-2xl text-left"
+        className="rounded-2xl"
       >
-        <div className="flex mx-auto md:mx-0 flex-col items-start md:items-center bg-[#00BC7D] rounded-2xl shadow-lg shadow-black/60 w-[16.5rem] h-[22rem] p-3 gap-3 md:w-[25rem] md:h-[29rem] md:p-4 md:gap-4">
+        <div className="flex mx-auto md:mx-0 flex-col items-start md:items-center bg-[#00BC7D] rounded-2xl shadow-lg shadow-black/60 w-[18rem] h-[24rem] px-2 py-2 pb-7 md:pb-0 md:py-0 md:px-0 gap-3 md:w-[25rem] md:h-[29rem] md:p-4 md:gap-4">
           <div className="mx-auto mt-2 flex rounded-2xl w-[14rem] h-[11rem] select-none overflow-hidden md:mt-4 md:w-[21rem] md:h-[14rem]">
             <div className="w-full h-full rounded-2xl bg-white/7 flex items-center justify-center text-5xl text-current md:text-6xl">
               {icon}
             </div>
           </div>
-          <div className="px-4 mt-2">
-            <h3 className="text-lg md:text-xl font-bold font-poppins text-current text-left md:text-center mb-1 md:mb-2 select-none">
+          <div className="px-4 mt-2 w-full">
+            <h3 className="text-lg md:text-xl font-bold font-poppins text-current text-center mb-2 select-none">
               {title}
             </h3>
+
             <p
               lang="pt-BR"
-              style={{
-                hyphens: "none",
-                WebkitHyphens: "none",
-                msHyphens: "none",
-              }}
-              className="text-sm md:text-[0.99rem] md:text-left font-semibold font-poppins select-none wrap-break-word tracking-[-0.12px] mt-4 md:mt-5 md:tracking-[-0.08px] [word-spacing:-0.06em]"
+              className="text-sm md:text-base font-semibold text-left font-poppins select-none mt-4 leading-relaxed"
             >
               {description}
             </p>
@@ -56,16 +52,16 @@ function ServiceCard({ icon, title, description }: ServiceCardProps) {
         cursor: "pointer",
         backfaceVisibility: "hidden",
       }}
-      className="rounded-2xl text-left"
+      className="rounded-2xl text-center"
     >
-      <motion.div className="flex mx-auto md:mx-0 flex-col items-start md:items-center bg-[#00BC7D] rounded-2xl shadow-lg shadow-black/60 w-[16.5rem] h-[22rem] p-3 gap-3 md:w-[25rem] md:h-[29rem] md:p-4 md:gap-4">
+      <motion.div className="flex flex-col items-center bg-[#00BC7D] gap-4 rounded-2xl w-[18rem] h-[27rem] md:w-[25rem] shadow-lg shadow-black/60 md:h-[31rem] p-4">
         <div className="mx-auto mt-2 flex rounded-2xl w-[14rem] h-[11rem] select-none overflow-hidden md:mt-4 md:w-[21rem] md:h-[14rem]">
           <div className="w-full h-full rounded-2xl bg-white/7 flex items-center justify-center text-5xl text-current md:text-6xl">
             {icon}
           </div>
         </div>
         <div className="px-4 mt-2">
-          <h3 className="text-lg md:text-xl font-bold font-poppins text-current text-left md:text-center mb-1 md:mb-2 select-none">
+          <h3 className="text-lg md:text-xl font-bold font-poppins text-current text-center md:text-center mb-1 md:mb-2 select-none">
             {title}
           </h3>
           <p
@@ -74,8 +70,10 @@ function ServiceCard({ icon, title, description }: ServiceCardProps) {
               hyphens: "none",
               WebkitHyphens: "none",
               msHyphens: "none",
+              overflowWrap: "break-word",
+              wordBreak: "break-word",
             }}
-            className="text-sm md:text-[0.99rem] md:text-left font-semibold font-poppins select-none wrap-break-word tracking-[-0.12px] mt-4 md:mt-5 md:tracking-[-0.08px] [word-spacing:-0.06em]"
+            className="text-sm md:text-[1.09rem] font-semibold md:text-left font-poppins select-none break-words tracking-[-0.12px] mt-4 md:mt-5 md:tracking-[-0.08px] [word-spacing:-0.12rem] md:[word-spacing:-0.00rem] text-center"
           >
             {description}
           </p>

@@ -118,12 +118,7 @@ function ProjectCard({
           )}
           <p
             lang="pt-BR"
-            style={{
-              hyphens: "none",
-              WebkitHyphens: "none",
-              msHyphens: "none",
-            }}
-            className="font-semibold font-poppins select-none wrap-break-word tracking-[-0.12px] md:tracking-[-0.08px] [word-spacing:-0.06em] pb-3 md:pb-0"
+            className="font-semibold font-poppins text-left select-none text-[0.94rem] tracking-[-0.12px] md:tracking-[-0.08px] [word-spacing:-0.06em] pb-3 md:pb-0"
           >
             {description}
           </p>

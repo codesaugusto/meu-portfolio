@@ -1,11 +1,26 @@
 import "../../index.css";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import { CodeXml, Home, Grid, User, Mail } from "lucide-react";
 import { handleSmoothScroll } from "../../utils/smooth";
 import useActiveSection from "../../hooks/useActiveSection";
 
 const Hero = () => {
   const active = useActiveSection(["home", "projects", "about", "contact"]);
+  const [showMobileNav, setShowMobileNav] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + window.innerHeight;
+      const docHeight = document.documentElement.scrollHeight;
+      const atBottom = scrollPosition >= docHeight - 80; // small buffer to hide near the end
+      setShowMobileNav(!atBottom);
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <div
@@ -46,7 +61,13 @@ const Hero = () => {
       </div>
 
       {/* BOTTOM NAV MOBILE */}
-      <nav className="fixed bottom-4 left-1/2 transform -translate-x-1/2 w-[92%] md:hidden z-40">
+      <motion.nav
+        className="fixed bottom-4 left-1/2 transform -translate-x-1/2 w-[92%] md:hidden z-40"
+        style={{ pointerEvents: showMobileNav ? "auto" : "none" }}
+        initial={{ y: 80, opacity: 0 }}
+        animate={{ y: showMobileNav ? 0 : 80, opacity: showMobileNav ? 1 : 0 }}
+        transition={{ duration: 0.25, ease: "easeInOut" }}
+      >
         <div className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-md rounded-2xl shadow-xl px-4 py-3 flex justify-between items-center">
           {/* make nav icons reflect active section */}
           <>
@@ -110,7 +131,7 @@ const Hero = () => {
             </button>
           </>
         </div>
-      </nav>
+      </motion.nav>
     </div>
   );
 };

@@ -4,7 +4,6 @@ import { motion, useAnimation } from "framer-motion";
 import useInViewAnimation from "../../hooks/useInViewAnimation";
 import {
   SiPython,
-  SiGithub,
   SiNodedotjs,
   SiDiscord,
   SiWhatsapp,
@@ -19,15 +18,19 @@ import useIsMobile from "../../hooks/useIsMobile";
 const Icons = ({ icons }: { icons: { icon: IconType; name: string }[] }) => {
   // [] TypeScript dizendo o que espera do retorno da arrow function e que icons é um array de objetos daquele tipo, não um array vazio.
   return (
-    <div className="flex items-center gap-4">
+    <div className="flex items-center gap-3">
       {icons.map((t) => {
         const IconComp = t.icon;
         return (
-          <IconComp
-            key={t.name}
-            className="w-7 h-7 text-appTextLight dark:text-appTextDark"
-            title={t.name}
-          />
+          <div key={t.name} className="flex flex-col items-center gap-1">
+            <IconComp
+              className="w-7 h-7 text-appTextLight dark:text-appTextDark"
+              title={t.name}
+            />
+            <span className="text-[0.85rem] font-poppins font-medium text-center leading-tight">
+              {t.name}
+            </span>
+          </div>
         );
       })}
     </div>
@@ -230,7 +233,6 @@ export function CardProject() {
             <Icons
               icons={[
                 { icon: SiPython, name: "Python" },
-                { icon: SiGithub, name: "GitHub" },
                 { icon: SiDiscord, name: "Discord" },
               ]}
             />
@@ -248,8 +250,6 @@ export function CardProject() {
               icons={[
                 { icon: SiMongodb, name: "MongoDB" },
                 { icon: SiNodedotjs, name: "Node.js" },
-                { icon: SiGithub, name: "GitHub" },
-                { icon: SiWhatsapp, name: "WhatsApp" },
               ]}
             />
           }
@@ -266,7 +266,6 @@ export function CardProject() {
               <Icons
                 icons={[
                   { icon: SiPython, name: "Python" },
-                  { icon: SiGithub, name: "GitHub" },
                   { icon: RiFileExcel2Line, name: "Excel" },
                 ]}
               />

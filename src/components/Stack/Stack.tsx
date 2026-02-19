@@ -13,10 +13,13 @@ interface StackProps {
 
 function Stack({ icon, description, disableMotion }: StackProps) {
   const content = (
-    <div className="w-8 h-8 flex items-start justify-center">{icon}</div>
+    <div className="w-8 h-8 flex cursor-pointer items-start justify-center">
+      {icon}
+    </div>
   );
 
-  const baseClass = "w-full grid grid-cols-[32px_1fr] gap-3 items-start";
+  const baseClass =
+    "w-full cursor-pointer grid grid-cols-[32px_1fr] gap-3 items-start";
 
   const text = (
     <p

@@ -83,7 +83,7 @@ const StackSection = () => {
                 : { opacity: 0, x: -50 }
             }
             transition={{
-              duration: 0.8,
+              duration: 1.2,
               ease: "easeOut",
               y: { duration: 8, repeat: Infinity },
               rotate: { duration: 8, repeat: Infinity, delay: 0.8 },

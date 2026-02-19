@@ -209,16 +209,3 @@ html.dark body {
     @apply bg-background text-foreground;
   }
 }
-
-/* Esconder barra de rolagem visualmente, mantendo a rolagem funcional */
-html,
-body {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
-}
-html::-webkit-scrollbar,
-body::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
-  width: 0;
-  height: 0;
-}

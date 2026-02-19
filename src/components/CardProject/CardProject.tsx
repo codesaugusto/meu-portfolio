@@ -181,6 +181,34 @@ function ProjectCard({
         </div>
       </div>
     );
+    if (href) {
+      const isExternal =
+        href.startsWith("http://") || href.startsWith("https://");
+      if (isExternal) {
+        return (
+          <a
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={description ? description : "Project link"}
+            className="no-underline"
+          >
+            {inner}
+          </a>
+        );
+      }
+
+      return (
+        <Link
+          to={href}
+          aria-label={description ? description : "Project link"}
+          className="no-underline"
+        >
+          {inner}
+        </Link>
+      );
+    }
+
     return inner;
   }
 

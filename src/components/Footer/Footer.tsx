@@ -9,7 +9,7 @@ export default function Footer() {
                 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
             `}</style>
 
-      <footer className="flex flex-col bg-[#f2f2f2] dark:bg-[#0E0930] items-center justify-around w-full md:py-6 pb-6 text-sm text-gray-800/70">
+      <footer className="flex flex-col items-center justify-around w-full md:py-6 pb-6 text-sm text-gray-800/70">
         <div className="hidden md:flex items-center md:gap-8 gap-5">
           <Link
             to="#home"

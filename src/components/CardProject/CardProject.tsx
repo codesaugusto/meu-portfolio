@@ -2,18 +2,10 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion, useAnimation } from "framer-motion";
 import useInViewAnimation from "../../hooks/useInViewAnimation";
-import {
-  SiPython,
-  SiNodedotjs,
-  SiDiscord,
-  SiWhatsapp,
-  SiMongodb,
-} from "react-icons/si";
+import { SiPython, SiNodedotjs, SiDiscord, SiMongodb } from "react-icons/si";
 import { RiFileExcel2Line } from "react-icons/ri";
 import type { IconType } from "react-icons";
 import useIsMobile from "../../hooks/useIsMobile";
-
-// eslint-disable-next-line react-hooks/rules-of-hooks
 
 const Icons = ({ icons }: { icons: { icon: IconType; name: string }[] }) => {
   // [] TypeScript dizendo o que espera do retorno da arrow function e que icons é um array de objetos daquele tipo, não um array vazio.
@@ -213,64 +205,66 @@ function ProjectCard({
 
 export function CardProject() {
   return (
-    <div
-      id="projects"
-      className="justify-center grid gap-12 pt-8 md:pt-12 xl:pt-24 xl:pb-48"
-    >
-      <h1 className="md:text-4xl text-3xl text-current flex justify-center items-center font-semibold font-poppins">
-        Meus Projetos
-      </h1>
-      {/* Cards */}
-      <div className="grid md:grid-cols-2 xl:grid-cols-3 grid-cols-1 justify-center gap-22 xl:px-0 md:gap-16 md:my-22 md:px-12 md:pr-16 xl:pr-0 xl:gap-22">
-        <ProjectCard
-          imgSrc="../../../imgs/img_bot_discord_deals.jpg"
-          title="Discord Deals Offerts"
-          description={
-            "Um disparador de jogos gratuitos e pagos desenvoldido com Python, para canais de servidores Discord."
-          }
-          href="https://github.com/codesaugusto/discord_deals_offerts"
-          icon={
-            <Icons
-              icons={[
-                { icon: SiPython, name: "Python" },
-                { icon: SiDiscord, name: "Discord" },
-              ]}
-            />
-          }
-        />
-        <ProjectCard
-          imgSrc="../../../imgs/turcb.png"
-          title="TurCB"
-          description={
-            "Um bot para WhatsApp, que dispara informações turisticas para a cidade de Corumbá desenvolvido com Node.js e MongoDB."
-          }
-          href="https://github.com/codesaugusto/turcb_bot"
-          icon={
-            <Icons
-              icons={[
-                { icon: SiMongodb, name: "MongoDB" },
-                { icon: SiNodedotjs, name: "Node.js" },
-              ]}
-            />
-          }
-        />
-        <div className="md:col-span-2 md:flex md:justify-center xl:col-span-1">
+    <div className="relative">
+      <div
+        id="projects"
+        className="relative z-10 justify-center grid gap-12 pt-8 md:pt-12 xl:pt-24 xl:pb-48"
+      >
+        <h1 className="md:text-4xl text-3xl text-current flex justify-center items-center font-semibold font-poppins">
+          Meus Projetos
+        </h1>
+        {/* Cards */}
+        <div className="grid md:grid-cols-2 xl:grid-cols-3 grid-cols-1 justify-center gap-22 xl:px-0 md:gap-16 md:my-22 md:px-12 md:pr-16 xl:pr-0 xl:gap-22">
           <ProjectCard
-            imgSrc="../../../imgs/scraping_gpu.png"
-            title="Web Scraping"
+            imgSrc="../../../imgs/img_bot_discord_deals.jpg"
+            title="Discord Deals Offerts"
             description={
-              "Raspagem de dados de preços de placas de vídeo de um site e-commerce, usando Selenium, pandas e ferramentas auxiliares."
+              "Um disparador de jogos gratuitos e pagos desenvoldido com Python, para canais de servidores Discord."
             }
-            href="https://github.com/codesaugusto/scraping_dados_gpu"
+            href="https://github.com/codesaugusto/discord_deals_offerts"
             icon={
               <Icons
                 icons={[
                   { icon: SiPython, name: "Python" },
-                  { icon: RiFileExcel2Line, name: "Excel" },
+                  { icon: SiDiscord, name: "Discord" },
                 ]}
               />
             }
           />
+          <ProjectCard
+            imgSrc="../../../imgs/turcb.png"
+            title="TurCB"
+            description={
+              "Um bot para WhatsApp, que dispara informações turisticas para a cidade de Corumbá desenvolvido com Node.js e MongoDB."
+            }
+            href="https://github.com/codesaugusto/turcb_bot"
+            icon={
+              <Icons
+                icons={[
+                  { icon: SiMongodb, name: "MongoDB" },
+                  { icon: SiNodedotjs, name: "Node.js" },
+                ]}
+              />
+            }
+          />
+          <div className="md:col-span-2 md:flex md:justify-center xl:col-span-1">
+            <ProjectCard
+              imgSrc="../../../imgs/scraping_gpu.png"
+              title="Web Scraping"
+              description={
+                "Raspagem de dados de preços de placas de vídeo de um site e-commerce, usando Selenium, pandas e ferramentas auxiliares."
+              }
+              href="https://github.com/codesaugusto/scraping_dados_gpu"
+              icon={
+                <Icons
+                  icons={[
+                    { icon: SiPython, name: "Python" },
+                    { icon: RiFileExcel2Line, name: "Excel" },
+                  ]}
+                />
+              }
+            />
+          </div>
         </div>
       </div>
     </div>

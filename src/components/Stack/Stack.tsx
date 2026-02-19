@@ -54,7 +54,7 @@ const StackSection = () => {
       id="stack"
       className="justify-center md:flex md:flex-col md:items-center gap-12 pt-20 md:pt-[4rem] xl:pt-20 xl:pb-48"
     >
-      <h1 className="text-3xl md:text-4xl text-center flex justify-center items-center font-semibold font-poppins">
+      <h1 className="mx-auto px-10 md:px-0 md:mx-0 text-3xl md:text-4xl text-center flex justify-center items-center font-semibold font-poppins">
         Por que trabalhar comigo?
       </h1>
       {/* cards */}

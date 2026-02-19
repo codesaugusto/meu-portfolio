@@ -21,6 +21,7 @@ const Hero = () => {
     window.addEventListener("scroll", handleScroll, { passive: true });
     // retorno de cleanup para remover o event listener quando o componente for desmontado, evitando vazamentos de memória e comportamento inesperado.
     return () => window.removeEventListener("scroll", handleScroll);
+    // array de dependências vazio para garantir que o efeito seja executado apenas uma vez na montagem do componente, configurando o listener de scroll e a função de limpeza corretamente.
   }, []);
 
   return (

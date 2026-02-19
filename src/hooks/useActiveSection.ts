@@ -90,7 +90,7 @@ export default function useActiveSection(sectionIds: string[]) {
       window.removeEventListener("orientationchange", schedule);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [...sectionIds]);
+  }, [JSON.stringify(sectionIds)]);
 
   return active;
 }

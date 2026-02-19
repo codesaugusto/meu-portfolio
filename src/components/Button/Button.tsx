@@ -45,21 +45,20 @@ const Button = () => {
           className="flex flex-col gap-4"
         >
           <button
-            onClick={() => handleSmoothScroll({ id: "projects" })}
-            aria-label="Serviços"
-            className="w-52 h-13 bg-emerald-500 text-white py-3 rounded-xl shadow-lg flex items-center justify-center gap-3 font-bold font-poppins text-lg"
-          >
-            <Zap className="md:w-5 md:h-5 w-6 h-6 text-current" />
-            <span>Serviços</span>
-          </button>
-
-          <button
             onClick={() => handleSmoothScroll({ id: "contact" })}
             aria-label="Contato"
             className={`w-52   h-13 py-3 rounded-xl shadow-md flex items-center justify-center gap-3 font-bold font-poppins text-lg ${contactThemeClasses}`}
           >
             <PhoneCall className="md:w-5 md:h-5 w-6 h-6 text-current" />
             <span>Contato</span>
+          </button>
+          <button
+            onClick={() => handleSmoothScroll({ id: "projects" })}
+            aria-label="Serviços"
+            className="w-52 h-13 bg-emerald-500 text-white py-3 rounded-xl shadow-lg flex items-center justify-center gap-3 font-bold font-poppins text-lg"
+          >
+            <Zap className="md:w-5 md:h-5 w-6 h-6 text-current" />
+            <span>Projetos</span>
           </button>
         </motion.div>
       </div>

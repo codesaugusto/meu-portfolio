@@ -167,7 +167,7 @@ function ContactForm() {
           maxLength={MAX_NAME}
           onChange={(e) => setName(e.target.value.slice(0, MAX_NAME))}
           placeholder="Seu Nome"
-          className={`w-full border-b border-gray-300 placeholder-gray-300 py-2 px-1 ${theme === "dark" ? "placeholder-gray-400 text-black" : "placeholder-gray-300 text-black  "} focus:outline-none  xl:placeholder-gray-400`}
+          className={`w-full border-b border-gray-300 placeholder-gray-300 py-2 px-1 ${theme === "dark" ? "placeholder-gray-400 text-black md:text-[#ffffff]" : "placeholder-gray-300 text-black  "} focus:outline-none  xl:placeholder-gray-400`}
         />
       </div>
 
@@ -178,7 +178,7 @@ function ContactForm() {
           maxLength={MAX_EMAIL}
           onChange={(e) => setEmail(e.target.value.slice(0, MAX_EMAIL))}
           placeholder="Seu Email"
-          className={`w-full border-b border-gray-300 placeholder-gray-300 py-2 px-1 ${theme === "dark" ? "placeholder-gray-400 text-black" : "placeholder-gray-300 text-black  "}  xl:placeholder-gray-400 focus:outline-none `}
+          className={`w-full border-b border-gray-300 placeholder-gray-300 py-2 px-1 ${theme === "dark" ? "placeholder-gray-400 text-black md:text-[#ffffff]" : "placeholder-gray-300 text-black  "}  xl:placeholder-gray-400 focus:outline-none `}
         />
       </div>
 
@@ -189,7 +189,7 @@ function ContactForm() {
           maxLength={MAX_MESSAGE}
           onChange={(e) => setMessage(e.target.value.slice(0, MAX_MESSAGE))}
           placeholder="Sua mensagem"
-          className={`w-full h-32 border-b border-gray-300 placeholder-gray-300 py-2 px-1 ${theme === "dark" ? "placeholder-gray-400 text-black" : "placeholder-gray-300 text-black  "} focus:outline-none resize-none xl:placeholder-gray-400`}
+          className={`w-full h-32 border-b border-gray-300 placeholder-gray-300 py-2 px-1 ${theme === "dark" ? "placeholder-gray-400 text-black md:text-[#ffffff]" : "placeholder-gray-300 text-black  "} focus:outline-none resize-none xl:placeholder-gray-400`}
         />
       </div>
 

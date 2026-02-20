@@ -13,13 +13,11 @@ interface StackProps {
 
 function Stack({ icon, description, disableMotion }: StackProps) {
   const content = (
-    <div className="w-8 h-8 flex cursor-pointer items-start justify-center">
-      {icon}
-    </div>
+    <div className="w-8 h-8 flex cursor-pointer justify-start">{icon}</div>
   );
 
   const baseClass =
-    "w-full cursor-pointer grid grid-cols-[32px_1fr] gap-3 items-start";
+    "w-full cursor-pointer grid grid-cols-[32px_1fr] gap-3 items-center";
 
   const text = (
     <p
@@ -32,7 +30,7 @@ function Stack({ icon, description, disableMotion }: StackProps) {
 
   if (disableMotion) {
     return (
-      <div className="rounded-2xl text-center flex cursor-pointer flex-row items-start gap-2">
+      <div className="rounded-2xl text-center flex cursor-pointer flex-row items-center gap-2">
         {content}
         {text}
       </div>
@@ -107,19 +105,6 @@ const StackSection = () => {
                 </span>
               </p>
 
-              <Stack
-                disableMotion
-                icon={
-                  <FiCheckCircle
-                    className={
-                      theme === "dark" ? "text-[#f2f2f2]" : "text-black"
-                    }
-                    size={24}
-                    strokeWidth={2.6}
-                  />
-                }
-                description="Código limpo, organizado"
-              />
               <Stack
                 disableMotion
                 icon={

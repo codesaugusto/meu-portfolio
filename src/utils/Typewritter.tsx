@@ -101,6 +101,12 @@ const Typewriter: React.FC<TypewriterProps> = ({
           clearTimeout(startTimeoutRef.current);
           startTimeoutRef.current = null;
         }
+        // ensure any running animation is stopped when unmounting
+        runningRef.current = false;
+        if (rafRef.current) {
+          cancelAnimationFrame(rafRef.current);
+          rafRef.current = null;
+        }
       };
     }
 
@@ -133,8 +139,9 @@ const Typewriter: React.FC<TypewriterProps> = ({
 
     obs.observe(el);
     return () => obs.disconnect();
+    // avoid recreating observer when typing completes
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [startOnView, cleanText, typingComplete]);
+  }, [startOnView, cleanText]);
 
   /* ---------------- CURSOR BLINK ---------------- */
 

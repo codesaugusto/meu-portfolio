@@ -14,14 +14,8 @@ export default function useTheme() {
   });
 
   // Keep document class and localStorage in sync; listen for cross-tab changes
+  // Register global listeners once (do not re-register on theme changes)
   useEffect(() => {
-    document.documentElement.classList.toggle("dark", theme === "dark");
-    try {
-      localStorage.setItem("theme", theme);
-    } catch {
-      /* ignore */
-    }
-
     const onStorage = (e: StorageEvent) => {
       if (e.key === "theme") {
         setTheme(e.newValue === "dark" ? "dark" : "light");
@@ -30,7 +24,6 @@ export default function useTheme() {
 
     const onCustom = (e: Event) => {
       try {
-        // @ts-ignore detail
         const next = (e as CustomEvent).detail as Theme;
         if (next) setTheme(next);
       } catch {
@@ -50,7 +43,6 @@ export default function useTheme() {
       mq.addEventListener("change", onPref);
     } catch {
       // safari fallback
-      // @ts-ignore
       mq.addListener(onPref);
     }
 
@@ -60,10 +52,20 @@ export default function useTheme() {
       try {
         mq.removeEventListener("change", onPref);
       } catch {
-        // @ts-ignore
         mq.removeListener(onPref);
       }
     };
+    // run once
+  }, []);
+
+  // Keep document class and localStorage in sync when `theme` changes
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", theme === "dark");
+    try {
+      localStorage.setItem("theme", theme);
+    } catch {
+      /* ignore */
+    }
   }, [theme]);
 
   const toggleTheme = useCallback(() => {

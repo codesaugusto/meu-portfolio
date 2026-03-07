@@ -1,13 +1,20 @@
 import "../../index.css";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { CodeXml, Home, Grid, User, Mail } from "lucide-react";
+import { Home, Grid, User, Mail, Zap, PhoneCall } from "lucide-react";
 import { handleSmoothScroll } from "../../utils/smooth";
 import useActiveSection from "../../hooks/useActiveSection";
+import { useThemeContext } from "../../context/useThemeContext";
+import { buttonVariants } from "../../utils/animations";
+import CodeWindow from "./CodeWindow";
 
 const Hero = () => {
   const active = useActiveSection(["home", "projects", "about", "contact"]);
   const [showMobileNav, setShowMobileNav] = useState(true);
+  const { theme } = useThemeContext();
+
+  const contactThemeClasses =
+    theme === "dark" ? "bg-white text-black" : "bg-black text-white";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,39 +34,66 @@ const Hero = () => {
   return (
     <div
       id="home"
-      className="mt-12 w-full justify-center mx-auto flex relative"
+      className="w-full min-h-screen flex flex-col items-center justify-center relative px-4 md:px-0"
     >
-      {/* COLUNA DIREITA */}
-      <div>
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: "easeOut" }}
-          className="flex flex-col font-semibold text-center gap-2 items-center md:pl-10 md:px-10 px-8"
-        >
-          <h1
-            style={{
-              hyphens: "none",
-              WebkitHyphens: "none",
-              msHyphens: "none",
-            }}
-            className="md:text-6xl text-3xl font-poppins leading-tight md:pt-16 pt-12 text-center md:text-center md:font-[450] font-bold"
+      {/* LAYOUT HERO - 2 colunas no desktop, centrado */}
+      <div className="flex flex-col md:flex-row items-center md:items-center gap-8 md:gap-16 w-full max-w-6xl mx-auto mb-15">
+        {/* COLUNA ESQUERDA - Code Window */}
+        <div className="hidden md:flex md:flex-1 md:justify-center md:order-1">
+          <CodeWindow />
+        </div>
+
+        {/* COLUNA DIREITA - Texto */}
+        <div className="md:flex-1 flex justify-center md:justify-start md:order-2">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: "easeOut" }}
+            className="flex flex-col font-semibold text-center md:text-left w-full md:w-auto gap-6 items-center md:items-start"
           >
-            <span className="block dark:text-appTextDark">
-              Transformo <span className="text-emerald-500">ideias </span>
-              em{" "}
-              <span className=" text-emerald-500">
-                soluções <br /> digitais{" "}
+            <h1
+              style={{
+                hyphens: "none",
+                WebkitHyphens: "none",
+                msHyphens: "none",
+              }}
+              className="md:text-5xl md:max-w-xl text-4xl font-poppins leading-tight font-bold"
+            >
+              <span className="block dark:text-appTextDark">
+                Transformo <span className="text-emerald-500">ideias </span>
+                em <span className="text-emerald-500">soluções digitais</span>
+                <br /> completas
               </span>
-              completas
-            </span>
-          </h1>
-          <CodeXml className="hidden md:flex md:w-20 md:h-20 w-16 h-16 pt-2 text-emerald-500" />
-          <p className="font-bold text-center text-lg md:hidden pt-4 text-gray-500">
-            Desenvolvimento full-stack com foco em experiência do usuário e
-            performance.
-          </p>
-        </motion.div>
+            </h1>
+            <p className="font-semibold text-lg italic md:text-lg font-poppins text-gray-600 dark:text-gray-400 md:max-w-lg">
+              Desenvolvimento full-stack com foco em experiência do usuário e
+              performance.
+            </p>
+
+            {/* BUTTONS - Below text */}
+            <div className="flex flex-col gap-3 w-44 md:flex-row md:gap-6 md:items-center md:w-auto pt-4">
+              <motion.button
+                {...buttonVariants}
+                style={{ cursor: "pointer" }}
+                onClick={() => handleSmoothScroll({ id: "contact" })}
+                className={`w-full md:w-auto px-8 py-4 rounded-2xl md:rounded-2xl font-bold font-poppins text-base md:text-lg flex items-center justify-center gap-2 transition-all hover:scale-105 ${contactThemeClasses}`}
+              >
+                <PhoneCall className="w-5 h-5" />
+                <span>CONTATO</span>
+              </motion.button>
+
+              <motion.button
+                {...buttonVariants}
+                style={{ cursor: "pointer" }}
+                onClick={() => handleSmoothScroll({ id: "projects" })}
+                className="w-full md:w-auto px-8 py-4 rounded-2xl md:rounded-2xl font-bold font-poppins text-base md:text-lg flex items-center justify-center gap-2 bg-emerald-500 dark:bg-emerald-400 text-black transition-all hover:scale-105"
+              >
+                <Zap className="w-5 h-5" />
+                <span>PROJETOS</span>
+              </motion.button>
+            </div>
+          </motion.div>
+        </div>
       </div>
 
       {/* BOTTOM NAV MOBILE */}

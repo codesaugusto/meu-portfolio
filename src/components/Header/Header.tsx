@@ -1,5 +1,4 @@
 import "../../index.css";
-import { FiInstagram } from "react-icons/fi";
 import ThemeToggle from "../ThemeToggle/ThemeToggle";
 import { Link } from "react-router-dom";
 
@@ -16,14 +15,7 @@ const Header = () => {
             target="_blank"
             rel="noopener noreferrer"
             className="justify-start flex gap-2 items-center"
-          >
-            <div className="md:text-3xl cursor-pointer text-2xl font-semibold font-montserrat italic text-current">
-              @codes.augusto
-            </div>
-            <span className="text-4xl">
-              <FiInstagram className="md:w-8 md:h-12 w-7 h-8 text-current" />
-            </span>
-          </Link>
+          ></Link>
           <div className="pr-4">
             <ThemeToggle />
           </div>

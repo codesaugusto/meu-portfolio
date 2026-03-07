@@ -3,7 +3,6 @@ import Header from "./components/Header/Header";
 import { ThemeProvider } from "./context/ThemeProvider";
 import { InViewProvider } from "./context/InViewContext";
 import Hero from "./components/Hero/Hero";
-import Button from "./components/Button/Button";
 import Text from "./components/Text/Text";
 import TechCarousel from "./components/TechCarousel/TechCarousel";
 import CardProject from "./components/CardProject/CardProject";
@@ -20,7 +19,6 @@ function App() {
       <ThemeProvider>
         <Header />
         <Hero />
-        <Button />
         <Text />
         <TechCarousel />
         <Services />

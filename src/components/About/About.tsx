@@ -55,7 +55,7 @@ const About = () => {
               }
               cursorColor={theme === "dark" ? "text-[#f2f2f2]" : "text-black"}
               speed={14}
-              className="text-[1.15rem] text-left leading-relaxed font-semibold font-poppins text-current max-w-[23rem] md:tracking-[-0.15px] lg:tracking-[-0.08px] md:[word-spacing:-0.12rem] lg:[word-spacing:-0.09rem]"
+              className="text-[1.11rem] text-left leading-relaxed font-semibold font-poppins text-current max-w-[23rem] md:tracking-[-0.15px] lg:tracking-[-0.08px] md:[word-spacing:-0.12rem] lg:[word-spacing:-0.09rem]"
             />
           </div>
         </div>

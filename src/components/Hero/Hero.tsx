@@ -76,7 +76,7 @@ const Hero = () => {
                 {...buttonVariants}
                 style={{ cursor: "pointer" }}
                 onClick={() => handleSmoothScroll({ id: "contact" })}
-                className={`w-full md:w-auto px-8 py-4 rounded-2xl md:rounded-full font-bold font-poppins text-base md:text-lg flex items-center justify-center gap-2 transition-all hover:scale-105 ${contactThemeClasses}`}
+                className={`w-full md:w-auto px-8 py-4 rounded-2xl md:rounded-2xl font-bold font-poppins text-base md:text-lg flex items-center justify-center gap-2 transition-all hover:scale-105 ${contactThemeClasses}`}
               >
                 <PhoneCall className="w-5 h-5" />
                 <span>CONTATO</span>

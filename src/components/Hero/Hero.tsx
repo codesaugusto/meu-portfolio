@@ -34,10 +34,10 @@ const Hero = () => {
   return (
     <div
       id="home"
-      className="w-full min-h-screen flex flex-col items-center justify-center relative px-4 md:px-0"
+      className="w-full min-h-auto md:min-h-screen flex flex-col items-center justify-start md:justify-center relative px-4 md:px-0 pt-28 md:pt-0"
     >
       {/* LAYOUT HERO - 2 colunas no desktop, centrado */}
-      <div className="flex flex-col md:flex-row items-center md:items-center gap-8 md:gap-16 w-full max-w-6xl mx-auto mb-15">
+      <div className="flex flex-col md:flex-row items-center md:items-center gap-8 md:gap-16 w-full max-w-6xl mx-auto mb-28">
         {/* COLUNA ESQUERDA - Code Window */}
         <div className="hidden md:flex md:flex-1 md:justify-center md:order-1">
           <CodeWindow />
@@ -71,7 +71,7 @@ const Hero = () => {
             </p>
 
             {/* BUTTONS - Below text */}
-            <div className="flex flex-col gap-3 w-44 md:flex-row md:gap-6 md:items-center md:w-auto pt-4">
+            <div className="flex flex-col gap-3 w-44 md:flex-row md:gap-6 md:items-center md:w-auto pt-2 md:pt-4">
               <motion.button
                 {...buttonVariants}
                 style={{ cursor: "pointer" }}

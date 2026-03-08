@@ -197,7 +197,7 @@ const CodeWindow = () => {
       initial={{ opacity: 0, x: 60 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 1, ease: "easeOut", delay: 0.3 }}
-      className="hidden md:block w-full max-w-[520px] select-none"
+      className="hidden md:block w-full max-w-[520px] select-none pl-10"
     >
       <div
         className={`rounded-xl overflow-hidden shadow-2xl border ${

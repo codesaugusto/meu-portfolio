@@ -16,7 +16,7 @@ export function ModeToggle() {
       {theme === "dark" ? (
         <FiSun className="h-4 w-4" />
       ) : (
-        <FiMoon className="h-4 w-4" />
+        <FiMoon className="h-4   w-4" />
       )}
       <span>{theme === "dark" ? "Claro" : "Escuro"}</span>
     </button>

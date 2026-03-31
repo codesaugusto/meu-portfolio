@@ -72,9 +72,9 @@ const sizeStyles: Record<
   SwitchSize,
   { track: string; thumb: string; move: string }
 > = {
-  sm: { track: "h-5 w-9", thumb: "h-4 w-4", move: "translate-x-4" },
-  md: { track: "h-6 w-11", thumb: "h-5 w-5", move: "translate-x-5" },
-  lg: { track: "h-7 w-12", thumb: "h-6 w-6", move: "translate-x-5" },
+  sm: { track: "h-5 w-8", thumb: "h-4 w-4", move: "translate-x-3.5" },
+  md: { track: "h-6 w-9", thumb: "h-5 w-5", move: "translate-x-4" },
+  lg: { track: "h-7 w-11", thumb: "h-6 w-6", move: "translate-x-5" },
   xl: { track: "h-8 w-15", thumb: "h-7 w-7", move: "translate-x-7" },
 };
 
@@ -108,7 +108,7 @@ const Switch = React.forwardRef<HTMLButtonElement, SwitchProps>(
           className={cn(
             "pointer-events-none inline-flex items-center justify-center rounded-full bg-background shadow transition-transform",
             styles.thumb,
-            checked ? styles.move : "translate-x-1",
+            checked ? styles.move : "translate-x-0.5",
           )}
         >
           {children}

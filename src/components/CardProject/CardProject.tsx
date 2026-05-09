@@ -126,9 +126,9 @@ function ProjectCard({
     >
       <motion.div
         whileHover={{ scale: 1.04 }}
-        className="flex flex-col items-center bg-[#00BC7D] gap-4 rounded-2xl w-[18rem] h-[27rem] md:w-[21rem] md:h-[33rem] xl:w-[25rem] xl:h-[31rem] shadow-lg shadow-black/60 p-4"
+        className="flex flex-col items-center bg-[#00BC7D] gap-4 rounded-2xl w-[18rem] h-[27rem] md:w-[20rem] md:h-[29rem] xl:w-[22rem] xl:h-[31rem] shadow-lg shadow-black/60 p-4"
       >
-        <div className="mx-auto mt-4 flex rounded-2xl w-[16rem] h-[15rem] md:w-[17.6rem] md:h-[13rem] xl:w-[21rem] xl:h-[14rem] select-none overflow-hidden">
+        <div className="mx-auto mt-4 flex rounded-2xl w-[16rem] h-[15rem] md:w-[17rem] md:h-[14rem] xl:w-[19rem] xl:h-[14rem] select-none overflow-hidden">
           {imgSrc ? (
             <motion.img
               src={imgSrc}

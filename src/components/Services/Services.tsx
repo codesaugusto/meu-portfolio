@@ -54,8 +54,8 @@ function ServiceCard({ icon, title, description }: ServiceCardProps) {
       }}
       className="rounded-2xl text-center"
     >
-      <motion.div className="flex flex-col items-center bg-[#00BC7D] gap-4 rounded-2xl w-[18rem] h-[27rem] md:w-[20rem] md:h-[25rem] xl:w-[25rem] xl:h-[31rem] shadow-lg shadow-black/60 p-4">
-        <div className="mx-auto mt-2 flex rounded-2xl w-[14rem] h-[11rem] select-none overflow-hidden md:mt-4 md:w-[18rem] md:h-[10rem] xl:w-[21rem] xl:h-[14rem]">
+      <motion.div className="flex flex-col items-center bg-[#00BC7D] gap-4 rounded-2xl w-[18rem] h-[27rem] md:w-[20rem] md:h-[25rem] xl:w-[22rem] xl:h-[31rem] shadow-lg shadow-black/60 p-4">
+        <div className="mx-auto mt-2 flex rounded-2xl w-[14rem] h-[11rem] select-none overflow-hidden md:mt-4 md:w-[17rem] md:h-[14rem] xl:w-[19rem] xl:h-[14rem]">
           <div className="w-full h-full rounded-2xl bg-white/7 flex items-center justify-center text-5xl text-current md:text-6xl">
             {icon}
           </div>
